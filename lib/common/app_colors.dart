@@ -46,11 +46,21 @@ class AppColors {
   static const Color textColor3 = Color(0xFFEDEDED);
   static const Color textColor4 = Color(0xFF34312F);
   static const Color textColor5 = Color(0xFFF5F5F5);
+  static const Color textColor6 = Color(0xFF374151);
+  static const Color textColor7 = Color(0xFF323232);
+  static const Color textColor8 = Color(0xFF203A58);
+  static const Color textColor9 = Color(0xFF383838);
+
+
+
+  /// Text Colors
+  static const Color containerColor1 = Color(0xFFFFFAEA);
 
 
 
   /// Border Colors
   static const Color borderColor1 = Color(0xFFDADADA);
+  static const Color borderColor2 = Color(0xFFFFDB72);
   
   
   
@@ -58,6 +68,10 @@ class AppColors {
   static List<Color> containerGradientColor = [
     Color(0xFF182F4B).withAlpha(51),
     Color(0xFF838383).withAlpha(51),
+  ];
+  static List<Color> containerGradientColor2 = [
+    Colors.white,
+    Color(0xFFFFEAB8),
   ];
 
 
