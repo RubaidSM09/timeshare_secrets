@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:timeshare_secrets/app/modules/authentication/views/authentication_view.dart';
+import 'package:timeshare_secrets/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:timeshare_secrets/app/modules/home/views/home_view.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
 import 'package:timeshare_secrets/common/widgets/custom_text_fields.dart';
@@ -80,7 +81,7 @@ class SignInView extends GetView<AuthenticationController> {
                       )
                     ],
                   ),
-                  onTap: () => Get.offAll(HomeView()),
+                  onTap: () => Get.offAll(DashboardView()),
                 ),
 
                 SizedBox(height: 30.h,),

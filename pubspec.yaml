@@ -38,6 +38,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_svg: ^2.2.1
   google_fonts: ^6.3.2
+  dotted_border: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,8 @@ flutter:
     - assets/images/authentication/
     - assets/images/set_profile_docs/
     - assets/images/home/
+    - assets/images/bottom_navigation_bar/
+    - assets/images/vault/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

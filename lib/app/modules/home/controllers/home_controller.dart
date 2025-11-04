@@ -1,7 +1,17 @@
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  RxList<RxBool> isDeleteClicked = [false.obs, false.obs, false.obs].obs;
+
+  void DeleteClicked (int index) {
+    for (int i=0; i<isDeleteClicked.length; i++) {
+      if (i == index && isDeleteClicked[i] == false.obs) {
+        isDeleteClicked[i] = true.obs;
+      } else {
+        isDeleteClicked[i] = false.obs;
+      }
+    }
+  }
 
   final count = 0.obs;
   @override

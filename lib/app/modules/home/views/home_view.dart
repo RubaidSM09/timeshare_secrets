@@ -15,6 +15,8 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
+
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
@@ -24,7 +26,7 @@ class HomeView extends GetView<HomeController> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20.r),
+          padding: EdgeInsets.symmetric(horizontal: 20.r),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -345,6 +347,42 @@ class HomeView extends GetView<HomeController> {
                     fontSize: 24.sp,
                   ),
                 ),
+
+                SizedBox(height: 16.h,),
+
+                Column(
+                  spacing: 10.h,
+                  children: [
+                    SmartAlertsCard(
+                      index: 0,
+                      isActive: true,
+                      title: 'Exchange Window Opening',
+                      subtitle: 'High-demand week inventory opens Sep 15, 2025.',
+                      isDeleteClicked: controller.isDeleteClicked,
+                      DeleteClicked: controller.DeleteClicked,
+                    ),
+
+                    SmartAlertsCard(
+                      index: 1,
+                      isActive: false,
+                      title: 'Exchange Window Opening',
+                      subtitle: 'High-demand week inventory opens Sep 15, 2025.',
+                      isDeleteClicked: controller.isDeleteClicked,
+                      DeleteClicked: controller.DeleteClicked,
+                    ),
+
+                    SmartAlertsCard(
+                      index: 2,
+                      isActive: false,
+                      title: 'Exchange Window Opening',
+                      subtitle: 'High-demand week inventory opens Sep 15, 2025.',
+                      isDeleteClicked: controller.isDeleteClicked,
+                      DeleteClicked: controller.DeleteClicked,
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 20.h,),
               ],
             ),
           ),
@@ -570,5 +608,123 @@ class StoragePlanChipsGrid extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+
+class SmartAlertsCard extends StatelessWidget {
+  final int index;
+  final bool isActive;
+  final String title;
+  final String subtitle;
+  final RxList<RxBool> isDeleteClicked;
+  final void Function(int) DeleteClicked;
+
+  const SmartAlertsCard({
+    required this.index,
+    required this.isActive,
+    required this.title,
+    required this.subtitle,
+    required this.isDeleteClicked,
+    required this.DeleteClicked,
+    super.key
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() {
+      return Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            padding: EdgeInsets.all(12.r),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6.r),
+              color: AppColors.tsWhite.withAlpha(26),
+              border: Border(
+                left: BorderSide(
+                  color: isActive ? AppColors.textColor1 : AppColors.tsWhite,
+                  width: 2.5.w,
+                ),
+              ),
+            ),
+            child: Row(
+              spacing: 72.w,
+              children: [
+                Row(
+                  spacing: 10.w,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/images/home/smart_alerts_active_icon.svg',
+                      color: isActive ? AppColors.textColor1 : AppColors.tsWhite,
+                    ),
+
+                    Column(
+                      spacing: 4.h,
+                      crossAxisAlignment: CrossAxisAlignment
+                          .start,
+                      children: [
+                        Text(
+                          title,
+                          style: h3.copyWith(
+                            color: AppColors.tsWhite,
+                            fontSize: 12.sp,
+                          ),
+                        ),
+
+                        Text(
+                          subtitle,
+                          style: h4.copyWith(
+                            color: AppColors.textColor1,
+                            fontSize: 10.sp,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+
+                GestureDetector(
+                  onTap: () {
+                    DeleteClicked(index);
+                  },
+                  child: SvgPicture.asset(
+                    'assets/images/home/more_options.svg',
+                  ),
+                )
+              ],
+            ),
+          ),
+
+          if (isDeleteClicked[index].value)
+            Positioned(
+              right: 0.w,
+              bottom: -10.h,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 10.w, vertical: 6.h,),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6.r),
+                  color: AppColors.tsWhite,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.tsBlack.withAlpha(40),
+                      blurRadius: 4.r,
+                      offset: Offset(0.w, 4.h),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  'Delete',
+                  style: h4.copyWith(
+                    color: AppColors.tsBlack,
+                    fontSize: 10.sp,
+                  ),
+                ),
+              ),
+            ),
+        ],
+      );
+    });
   }
 }
