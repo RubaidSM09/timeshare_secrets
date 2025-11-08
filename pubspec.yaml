@@ -74,6 +74,7 @@ flutter:
     - assets/images/home/
     - assets/images/bottom_navigation_bar/
     - assets/images/vault/
+    - assets/images/profile/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
