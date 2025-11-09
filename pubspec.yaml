@@ -75,6 +75,7 @@ flutter:
     - assets/images/bottom_navigation_bar/
     - assets/images/vault/
     - assets/images/profile/
+    - assets/images/genie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

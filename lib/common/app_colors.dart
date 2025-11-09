@@ -40,6 +40,11 @@ class AppColors {
 
 
 
+  /// Box Shadow Color
+  static const Color boxShadowColor1 = Color(0xFF0A0D12);
+
+
+
   /// Text Colors
   static const Color textColor1 = Color(0xFFD7AB42);
   static const Color textColor2 = Color(0xFFC8C8C8);
@@ -55,12 +60,23 @@ class AppColors {
   static const Color textColor12 = Color(0xFF1B1B1B);
   static const Color textColor13 = Color(0xFFE43636);
   static const Color textColor14 = Color(0xFF9E9E9E);
+  static const Color textColor15 = Color(0xFFE3E3E3);
+  static const Color textColor16 = Color(0xFF797979);
+  static const Color textColor17 = Color(0xFF1D3856);
+  static const Color textColor18 = Color(0xFF7C7C7C);
 
 
 
   /// Container Colors
   static const Color containerColor1 = Color(0xFFFFFAEA);
   static const Color containerColor2 = Color(0xFFE04242);
+  static const Color containerColor3 = Color(0xFFFFFBF0);
+  static const Color containerColor4 = Color(0xFFFFF6D2);
+  static const Color containerColor5 = Color(0xFF051C38);
+  static const Color containerColor6 = Color(0xFFF3F3F3);
+  static const Color containerColor7 = Color(0xFFE5F3FE);
+  static const Color containerColor8 = Color(0xFFEECB3D);
+  static const Color containerColor9 = Color(0xFFD1D5DB);
 
 
 
@@ -68,6 +84,8 @@ class AppColors {
   static const Color borderColor1 = Color(0xFFDADADA);
   static const Color borderColor2 = Color(0xFFFFDB72);
   static const Color borderColor3 = Color(0xFF475467);
+  static const Color borderColor4 = Color(0xFFA7A7A7);
+  static const Color borderColor5 = Color(0xFFA9A9A9);
   
   
   
@@ -80,6 +98,10 @@ class AppColors {
     Colors.white,
     Color(0xFFFFEAB8),
   ];
+  static List<Color> containerGradientColor3 = [
+    Color(0xFF0C223B).withAlpha(51),
+    Colors.white.withAlpha(13),
+  ];
 
 
 
@@ -88,4 +110,6 @@ class AppColors {
   static const Color tsGray = Color(0xFF6B7280);
   static const Color tsBlack = Color(0xFF000000);
   static const Color tsTransparent = Color(0x00000000);
+  static const Color tsBlue = Color(0xFF1B53AE);
+  static const Color tsBlur = Color(0xFF888888);
 }

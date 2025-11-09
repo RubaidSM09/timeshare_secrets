@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:timeshare_secrets/app/modules/profile/views/settings_view.dart';
+import 'package:timeshare_secrets/app/modules/profile/views/subscription_plans_view.dart';
 import 'package:timeshare_secrets/common/app_colors.dart';
 import 'package:timeshare_secrets/common/custom_fonts.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
@@ -456,7 +457,7 @@ class ProfileView extends GetView<ProfileController> {
                       ),
                     ],
                   ),
-                  onTap: () {  },
+                  onTap: () => Get.to(SubscriptionPlansView()),
                 ),
 
                 SizedBox(height: 94.h,),

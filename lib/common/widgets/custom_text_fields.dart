@@ -23,6 +23,7 @@ class CustomTextFields extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool enabled;
   final Color? typedTextColor;
+  final double? width;
 
   // ✅ NEW (optional): fire when user hits the keyboard action (search/go/done)
   final void Function(String)? onSubmitted;
@@ -53,12 +54,14 @@ class CustomTextFields extends StatelessWidget {
     this.onPrefixTap,      // NEW
     this.textInputAction,  // NEW
     this.typedTextColor = AppColors.borderColor1,
+    this.width,
     super.key
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
       decoration: const BoxDecoration(
         // boxShadow: boxShadow, // (kept commented as in your original)
       ),

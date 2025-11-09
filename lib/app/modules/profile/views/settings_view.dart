@@ -4,7 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:timeshare_secrets/app/modules/profile/controllers/profile_controller.dart';
+import 'package:timeshare_secrets/app/modules/profile/views/change_password_view.dart';
+import 'package:timeshare_secrets/app/modules/profile/views/edit_profile_view.dart';
+import 'package:timeshare_secrets/app/modules/profile/views/help_support_view.dart';
 import 'package:timeshare_secrets/app/modules/profile/views/logout_view.dart';
+import 'package:timeshare_secrets/app/modules/profile/views/privacy_policy_view.dart';
+import 'package:timeshare_secrets/app/modules/profile/views/share_your_idea_view.dart';
+import 'package:timeshare_secrets/app/modules/profile/views/terms_conditions_view.dart';
 import 'package:timeshare_secrets/common/app_colors.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
 
@@ -17,36 +23,7 @@ class SettingsView extends GetView<ProfileController> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () => Get.back(),
-              child: Container(
-                padding: EdgeInsets.all(10.r),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.tsWhite,
-                ),
-                child: Icon(
-                  Icons.arrow_back,
-                  size: 16.r,
-                  color: AppColors.textColor1,
-                ),
-              ),
-            ),
-
-            Text(
-              'Settings',
-              style: h2.copyWith(
-                color: AppColors.tsWhite,
-                fontSize: 24.sp,
-              ),
-            ),
-
-            SizedBox.shrink(),
-          ],
-        ),
+        title: SettingsAppBar(appBarText: 'Settings',),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -63,13 +40,13 @@ class SettingsView extends GetView<ProfileController> {
                     SettingsCard(
                       icon: 'assets/images/profile/edit_profile.svg',
                       text: 'Edit Profile',
-                      onTap: () {  },
+                      onTap: () => Get.to(EditProfileView()),
                     ),
 
                     SettingsCard(
                       icon: 'assets/images/profile/change_password.svg',
                       text: 'Change Password',
-                      onTap: () {  },
+                      onTap: () => Get.to(ChangePasswordView()),
                     ),
 
                     Container(
@@ -134,25 +111,25 @@ class SettingsView extends GetView<ProfileController> {
                     SettingsCard(
                       icon: 'assets/images/profile/help_n_support.svg',
                       text: 'Help & Support',
-                      onTap: () {  },
+                      onTap: () => Get.to(HelpSupportView()),
                     ),
 
                     SettingsCard(
                       icon: 'assets/images/profile/share_your_ideas.svg',
                       text: 'Share your ideas',
-                      onTap: () {  },
+                      onTap: () => Get.to(ShareYourIdeaView()),
                     ),
 
                     SettingsCard(
                       icon: 'assets/images/profile/terms_conditions.svg',
                       text: 'Terms & Condition',
-                      onTap: () {  },
+                      onTap: () => Get.to(TermsConditionsView()),
                     ),
 
                     SettingsCard(
                       icon: 'assets/images/profile/privacy_policy.svg',
                       text: 'Privacy Policy',
-                      onTap: () {  },
+                      onTap: () => Get.to(PrivacyPolicyView()),
                     ),
                   ],
                 ),
@@ -247,6 +224,50 @@ class SettingsCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+class SettingsAppBar extends StatelessWidget {
+  final String appBarText;
+
+  const SettingsAppBar({
+    required this.appBarText,
+    super.key
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        GestureDetector(
+          onTap: () => Get.back(),
+          child: Container(
+            padding: EdgeInsets.all(10.r),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.tsWhite,
+            ),
+            child: Icon(
+              Icons.arrow_back,
+              size: 16.r,
+              color: AppColors.textColor1,
+            ),
+          ),
+        ),
+
+        Text(
+          appBarText,
+          style: h2.copyWith(
+            color: AppColors.tsWhite,
+            fontSize: 24.sp,
+          ),
+        ),
+
+        SizedBox.shrink(),
+      ],
     );
   }
 }

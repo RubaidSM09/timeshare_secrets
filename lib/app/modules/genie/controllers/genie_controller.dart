@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 
 class GenieController extends GetxController {
-  //TODO: Implement GenieController
+  RxBool isMessageClicked = false.obs;
+  RxBool isVoiceClicked = false.obs;
 
   final count = 0.obs;
   @override
