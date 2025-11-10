@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:timeshare_secrets/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:timeshare_secrets/app/modules/genie/views/genie_view.dart';
 
 import 'package:timeshare_secrets/app/modules/set_profile_docs/controllers/set_profile_docs_controller.dart';
 import 'package:timeshare_secrets/common/app_colors.dart';
@@ -91,7 +93,8 @@ class MeetGenieStepView extends GetView<SetProfileDocsController> {
                         ),
                         onTap: () {
                           // TODO: navigate to Genie chat / voice screen
-                          controller.goNext();
+                          Get.offAll(DashboardView());
+                          Get.to(GenieView());
                         },
                       ),
 
@@ -100,8 +103,7 @@ class MeetGenieStepView extends GetView<SetProfileDocsController> {
                       // Secondary "Skip"
                       GestureDetector(
                         onTap: () {
-                          // TODO: handle skip action
-                          controller.goNext();
+                          Get.offAll(DashboardView());
                         },
                         child: Container(
                           width: double.infinity,

@@ -112,31 +112,22 @@ class HomeView extends GetView<HomeController> {
                             children: [
                               SizedBox.shrink(),
 
-                              Container(
-                                padding: EdgeInsets.all(29.5.r),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.tsTransparent,
-                                  border: Border.all(
-                                    color: AppColors.normalBlue,
-                                    width: 14.r,
-                                  )
+                              CircularDonut(
+                                value: 0.26,
+                                size: 140.w, // you can keep this scaled to your design
+                                strokeWidth: 20.r,
+                                percentStyle: h1.copyWith(
+                                  color: AppColors.normalBlue,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.w700,
                                 ),
-                                child: Text(
-                                  '26%',
-                                  style: h1.copyWith(
-                                    color: AppColors.normalBlue,
-                                    fontSize: 20.sp,
-                                  ),
-                                ),
-                              ),
-
-                              Text(
-                                'Remaining : 74%',
-                                style: h4.copyWith(
+                                remainingStyle: h4.copyWith(
                                   color: AppColors.tsGray,
                                   fontSize: 12.sp,
                                 ),
+                                remainingText: 'Remaining : 74%',
+                                backgroundRing: const Color(0xFFDADDDC), // pale ring (adjust if you want)
+                                foregroundArc: AppColors.normalBlue, // dark arc color
                               ),
 
                               SizedBox.shrink(),
@@ -726,5 +717,122 @@ class SmartAlertsCard extends StatelessWidget {
         ],
       );
     });
+  }
+}
+
+
+// Add this widget (paste near the bottom of your file or in a new file)
+class CircularDonut extends StatelessWidget {
+  /// [value] between 0.0 and 1.0 (e.g. 0.26 for 26%)
+  final double value;
+  final double size; // outer diameter
+  final Color backgroundRing;
+  final Color foregroundArc;
+  final double strokeWidth;
+  final TextStyle percentStyle;
+  final TextStyle remainingStyle;
+  final String remainingText;
+
+  const CircularDonut({
+    super.key,
+    required this.value,
+    this.size = 120,
+    this.backgroundRing = const Color(0xFFE0E2E1), // pale grey ring
+    this.foregroundArc = const Color(0xFF0F2B3C), // navy arc
+    this.strokeWidth = 18.0,
+    required this.percentStyle,
+    required this.remainingStyle,
+    required this.remainingText,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            width: size,
+            height: size,
+            child: CustomPaint(
+              painter: _DonutPainter(
+                value: value.clamp(0.0, 1.0),
+                backgroundColor: backgroundRing,
+                foregroundColor: foregroundArc,
+                strokeWidth: strokeWidth,
+              ),
+              child: Center(
+                child: Text(
+                  '${(value * 100).round()}%',
+                  style: percentStyle,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            remainingText,
+            style: remainingStyle,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DonutPainter extends CustomPainter {
+  final double value;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final double strokeWidth;
+
+  _DonutPainter({
+    required this.value,
+    required this.backgroundColor,
+    required this.foregroundColor,
+    required this.strokeWidth,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = size.center(Offset.zero);
+    final radius = (math.min(size.width, size.height) - strokeWidth) / 2;
+
+    final bgPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.butt
+      ..color = backgroundColor;
+
+    canvas.drawCircle(center, radius, bgPaint);
+
+    // Foreground arc (rounded caps)
+    final fgPaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..strokeCap = StrokeCap.round
+      ..color = foregroundColor;
+
+    final startAngle = -math.pi / 2; // start at top
+    final sweepAngle = 2 * math.pi * value;
+
+    // draw arc
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      startAngle,
+      sweepAngle,
+      false,
+      fgPaint,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _DonutPainter old) {
+    return old.value != value ||
+        old.backgroundColor != backgroundColor ||
+        old.foregroundColor != foregroundColor ||
+        old.strokeWidth != strokeWidth;
   }
 }

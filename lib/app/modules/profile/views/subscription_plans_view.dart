@@ -30,7 +30,7 @@ class SubscriptionPlansView extends GetView<ProfileController> {
                 SizedBox(height: 25.h,),
 
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 9.39.h,),
+                  padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 9.39.h,),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6.r),
                     color: AppColors.containerColor1,
@@ -46,31 +46,22 @@ class SubscriptionPlansView extends GetView<ProfileController> {
                             children: [
                               SizedBox.shrink(),
 
-                              Container(
-                                padding: EdgeInsets.all(29.5.r),
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.tsTransparent,
-                                    border: Border.all(
-                                      color: AppColors.normalBlue,
-                                      width: 14.r,
-                                    )
+                              CircularDonut(
+                                value: 0.26,
+                                size: 140.w, // you can keep this scaled to your design
+                                strokeWidth: 20.r,
+                                percentStyle: h1.copyWith(
+                                  color: AppColors.normalBlue,
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.w700,
                                 ),
-                                child: Text(
-                                  '26%',
-                                  style: h1.copyWith(
-                                    color: AppColors.normalBlue,
-                                    fontSize: 20.sp,
-                                  ),
-                                ),
-                              ),
-
-                              Text(
-                                'Remaining : 74%',
-                                style: h4.copyWith(
+                                remainingStyle: h4.copyWith(
                                   color: AppColors.tsGray,
                                   fontSize: 12.sp,
                                 ),
+                                remainingText: 'Remaining : 74%',
+                                backgroundRing: const Color(0xFFDADDDC), // pale ring (adjust if you want)
+                                foregroundArc: AppColors.normalBlue, // dark arc color
                               ),
 
                               SizedBox.shrink(),

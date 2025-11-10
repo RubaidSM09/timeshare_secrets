@@ -1,5 +1,7 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:timeshare_secrets/app/modules/set_profile_docs/controllers/set_profile_docs_controller.dart';
@@ -19,212 +21,207 @@ class AddDocumentStepView extends GetView<SetProfileDocsController> {
             constraints: BoxConstraints(
               minHeight: constraints.maxHeight,
             ),
-            child: Padding(
-              padding: EdgeInsets.only(top: 24.h, bottom: 24.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Title
-                  Text(
-                    'Add Your First Document',
-                    style: h2.copyWith(
-                      color: AppColors.normalBlue,
-                      fontSize: 22.sp,
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title
+                Text(
+                  'Add Your First Document',
+                  style: h2.copyWith(
+                    color: AppColors.tsBlack,
+                    fontSize: 20.sp,
                   ),
+                ),
 
-                  SizedBox(height: 8.h),
+                SizedBox(height: 6.h),
 
-                  // Subtitle
-                  Text(
-                    'Upload a contract, disclosure guide, or fee bill. Genie '
-                        'will secure it, read it, and explain it in the language you '
-                        'selected.',
-                    style: h4.copyWith(
-                      color: AppColors.tsGray,
-                      fontSize: 14.sp,
-                    ),
+                // Subtitle
+                Text(
+                  'Upload a contract, disclosure guide, or fee bill. Genie will secure it, read it, and explain it in the language you selected.',
+                  style: h4.copyWith(
+                    color: AppColors.textColor19,
+                    fontSize: 14.sp,
                   ),
+                ),
 
-                  SizedBox(height: 24.h),
+                SizedBox(height: 24.h),
 
-                  // Upload area
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(
-                      vertical: 40.h,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(
-                        color: AppColors.containerColor8, // your yellow
-                        width: 1.5,
+                // Upload area
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6.r),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6.r),
+                    child: DottedBorder(
+                      options: RectDottedBorderOptions(
+                        dashPattern: [2.w, 2.h],
+                        strokeWidth: 4.r,
+                        color: AppColors.textColor1,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(26.r),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/images/set_profile_docs/upload.svg',
+                              ),
+
+                              SizedBox(height: 8.h),
+
+                              Text(
+                                'Click to upload or drag and drop',
+                                style: h3.copyWith(
+                                  color: AppColors.textColor20,
+                                  fontSize: 11.9.sp,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+
+                              Text(
+                                'PDF, DOC (Max 200MB)',
+                                style: h4.copyWith(
+                                  color: AppColors.tsGray,
+                                  fontSize: 10.2.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                  ),
+                ),
+
+                SizedBox(height: 12.h),
+
+                // Info box: examples
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(12.r),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6.r),
+                    border: Border.all(
+                      color: AppColors.textColor1,
+                    )
+                  ),
+                  child: RichText(
+                    text: TextSpan(
+                      style: h3.copyWith(
+                        color: AppColors.textColor10,
+                        fontSize: 12.sp,
+                      ),
                       children: [
-                        Icon(
-                          Icons.upload_rounded,
-                          size: 40.r,
-                          color: AppColors.tsGray,
+                        const TextSpan(
+                          text:
+                          'Please upload the required documents as per the given examples for smooth processing ',
                         ),
-                        SizedBox(height: 12.h),
-                        Text(
-                          'Click to upload or drag and drop',
-                          style: h4.copyWith(
-                            color: AppColors.normalBlue,
-                            fontSize: 14.sp,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          'PDF, DOC (Max 200MB)',
-                          style: h4.copyWith(
-                            color: AppColors.tsGray,
+                        TextSpan(
+                          text:
+                          ': Sales Contract, Public Offerings, Offering statement, Maintenance fees, Reservations',
+                          style: h3.copyWith(
+                            color: AppColors.textColor1,
                             fontSize: 12.sp,
                           ),
                         ),
                       ],
                     ),
                   ),
+                ),
 
-                  SizedBox(height: 16.h),
+                SizedBox(height: 12.h),
 
-                  // Info box: examples
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(12.r),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      color: AppColors.containerColor1, // light yellow-ish bg
-                    ),
-                    child: RichText(
-                      text: TextSpan(
-                        style: h4.copyWith(
-                          color: AppColors.textColor1,
-                          fontSize: 13.sp,
-                        ),
-                        children: [
-                          const TextSpan(
-                            text:
-                            'Please upload the required documents as per the given examples for smooth processing : ',
-                          ),
-                          TextSpan(
-                            text:
-                            'Sales Contract, Public Offerings, Offering statement, Maintenance fees, Reservations',
-                            style: h4.copyWith(
-                              color: AppColors.normalBlue,
-                              fontSize: 13.sp,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                // Info box: Forever Free
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: 17.w, vertical: 11.h,),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6.r),
+                    color: AppColors.containerColor10,
+                    border: Border.all(
+                      color: AppColors.borderColor6,
+                    )
                   ),
-
-                  SizedBox(height: 12.h),
-
-                  // Info box: Forever Free
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(12.r),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.r),
-                      color: AppColors.containerColor8, // main yellow
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Forever Free = 3 docs (200MB), ~150 pages review',
-                          style: h4.copyWith(
-                            color: AppColors.normalBlue,
-                            fontSize: 13.sp,
-                          ),
-                        ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          'Upgrade anytime for unlimited.',
-                          style: h4.copyWith(
-                            color: AppColors.normalBlue,
-                            fontSize: 13.sp,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(height: 24.h),
-
-                  // Upload Document button
-                  CustomButton(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 30.w,
-                      vertical: 12.h,
-                    ),
-                    color: AppColors.textColor1, // golden
-                    buttonContent: Center(
-                      child: Text(
-                        'Upload Document',
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Forever Free = 3 docs (200MB), ~150 pages review',
                         style: h2.copyWith(
                           color: AppColors.normalBlue,
-                          fontSize: 16.sp,
+                          fontSize: 12.sp,
                         ),
                       ),
-                    ),
-                    onTap: () {
-                      // TODO: implement upload logic
-                    },
-                  ),
 
-                  SizedBox(height: 16.h),
+                      SizedBox(height: 4.h),
 
-                  // Skip button (outlined-style)
-                  GestureDetector(
-                    onTap: () {
-                      controller.goNext();
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 30.w,
-                        vertical: 12.h,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.r),
-                        color: AppColors.tsWhite,
-                        border: Border.all(
+                      Text(
+                        'Upgrade anytime for unlimited.',
+                        style: h4.copyWith(
                           color: AppColors.normalBlue,
-                          width: 1,
+                          fontSize: 11.9.sp,
                         ),
                       ),
-                      child: Center(
-                        child: Text(
-                          'Skip',
-                          style: h2.copyWith(
-                            color: AppColors.normalBlue,
-                            fontSize: 16.sp,
-                          ),
-                        ),
-                      ),
-                    ),
+                    ],
                   ),
+                ),
 
-                  SizedBox(height: 8.h),
+                SizedBox(height: 20.h),
 
-                  Center(
+                // Upload Document button
+                CustomButton(
+                  padding: EdgeInsets.all(10.r),
+                  color: AppColors.textColor1,
+                  buttonContent: Center(
                     child: Text(
-                      'You can upload anytime in the Vault',
-                      style: h4.copyWith(
-                        color: AppColors.tsGray,
-                        fontSize: 12.sp,
+                      'Upload Document',
+                      style: h2.copyWith(
+                        color: AppColors.normalBlue,
+                        fontSize: 18.sp,
                       ),
                     ),
                   ),
-                ],
-              ),
+                  onTap: () {
+                    // TODO: implement upload logic
+                  },
+                ),
+
+                SizedBox(height: 16.h),
+
+                // Skip button (outlined-style)
+                CustomButton(
+                  padding: EdgeInsets.all(10.r),
+                  border: Border.all(
+                    color: AppColors.textColor1,
+                  ),
+                  buttonContent: Center(
+                    child: Text(
+                      'Skip',
+                      style: h2.copyWith(
+                        color: AppColors.normalBlue,
+                        fontSize: 18.sp,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    // TODO: implement upload logic
+                  },
+                ),
+
+                SizedBox(height: 12.h),
+
+                Center(
+                  child: Text(
+                    'You can upload anytime in the Vault',
+                    style: h4.copyWith(
+                      color: AppColors.tsGray,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );

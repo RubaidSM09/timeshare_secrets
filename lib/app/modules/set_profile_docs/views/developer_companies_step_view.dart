@@ -35,282 +35,325 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
         return SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 26.w, vertical: 24.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Title
-                  Text(
-                    'Which timeshare developer(s)\ndo you own with?',
-                    style: h2.copyWith(
-                      color: AppColors.normalBlue,
-                      fontSize: 22.sp,
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title
+                Text(
+                  'Which timeshare developer(s)\ndo you own with?',
+                  style: h2.copyWith(
+                    color: AppColors.normalBlue,
+                    fontSize: 20.sp,
                   ),
+                ),
 
-                  SizedBox(height: 10.h),
+                SizedBox(height: 10.h),
 
-                  // Subtitle
-                  Text(
-                    'Select all that apply',
-                    style: h4.copyWith(
-                      color: AppColors.tsGray,
-                      fontSize: 14.sp,
+                // Subtitle
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Select all that apply',
+                      style: h4.copyWith(
+                        color: AppColors.textColor21,
+                        fontSize: 12.sp,
+                      ),
                     ),
-                  ),
+                  ],
+                ),
 
-                  SizedBox(height: 16.h),
+                SizedBox(height: 16.h),
 
-                  // Search fields row
-                  Row(
-                    children: [
-                      // Search box
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16.w, vertical: 12.h),
-                          decoration: BoxDecoration(
-                            color: AppColors.tsWhite,
-                            borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(color: AppColors.containerColor8),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(Icons.search,
-                                  color: AppColors.tsGray, size: 18.r),
-                              SizedBox(width: 8.w),
-                              Expanded(
-                                child: Text(
-                                  'Search company name',
-                                  style: h4.copyWith(
-                                    color: AppColors.tsGray,
-                                    fontSize: 13.sp,
-                                  ),
+                // Search fields row
+                Row(
+                  spacing: 24.w,
+                  children: [
+                    // Search box
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 12.w, vertical: 6.h),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          color: AppColors.tsWhite,
+                          border: Border.all(color: AppColors.textColor1,),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.tsBlack.withAlpha(38),
+                              blurRadius: 6.r,
+                              offset: Offset(1.w, 1.h),
+                            )
+                          ],
+                        ),
+                        child: Row(
+                          spacing: 4.w,
+                          children: [
+                            Icon(
+                              Icons.search,
+                              color: AppColors.textColor22,
+                              size: 18.r,
+                            ),
+
+                            Expanded(
+                              child: Text(
+                                'Search company name',
+                                style: h4.copyWith(
+                                  color: AppColors.textColor22,
+                                  fontSize: 10.sp,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(width: 10.w),
+                    ),
 
-                      // Custom dropdown box (not built in)
-                      GestureDetector(
+                    // Custom dropdown box (not built in)
+                    Expanded(
+                      child: GestureDetector(
                         onTap: () {
                           companyListOpen.value = !companyListOpen.value;
                         },
                         child: Container(
-                          width: 150.w,
                           padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 12.h),
+                              horizontal: 12.w, vertical: 6.h),
                           decoration: BoxDecoration(
-                            color: AppColors.tsWhite,
                             borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(color: AppColors.containerColor8),
+                            color: AppColors.tsWhite,
+                            border: Border.all(color: AppColors.textColor1,),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.tsBlack.withAlpha(38),
+                                blurRadius: 6.r,
+                                offset: Offset(1.w, 1.h),
+                              )
+                            ],
                           ),
                           child: Row(
                             children: [
-                              Icon(Icons.list_alt_rounded,
-                                  color: AppColors.tsGray, size: 18.r),
-                              SizedBox(width: 6.w),
+                              Icon(
+                                Icons.list,
+                                color: AppColors.textColor10,
+                                size: 18.r,
+                              ),
+
+                              SizedBox(width: 4.w),
+
                               Expanded(
                                 child: Text(
                                   'List of company',
                                   style: h4.copyWith(
-                                    color: AppColors.tsGray,
-                                    fontSize: 13.sp,
+                                    color: AppColors.textColor22,
+                                    fontSize: 10.sp,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                              SizedBox(width: 6.w),
+
                               Obx(() => Transform.rotate(
                                 angle: companyListOpen.value ? 3.1416 : 0,
-                                child: Icon(Icons.keyboard_arrow_down_rounded,
-                                    color: AppColors.tsGray),
+                                child: Icon(
+                                  Icons.keyboard_arrow_down_rounded,
+                                  color: AppColors.tsGray,
+                                  size: 18.r,
+                                ),
                               )),
                             ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
 
-                  SizedBox(height: 18.h),
+                SizedBox(height: 18.h),
 
-                  // Dropdown container (custom)
-                  Obx(() {
-                    if (!companyListOpen.value) return const SizedBox.shrink();
+                // Dropdown container (custom)
+                Obx(() {
+                  if (!companyListOpen.value) return const SizedBox.shrink();
 
-                    return Container(
-                      margin: EdgeInsets.only(top: 6.h),
-                      padding: EdgeInsets.all(12.r),
-                      decoration: BoxDecoration(
-                        color: AppColors.tsWhite,
-                        borderRadius: BorderRadius.circular(12.r),
-                        border: Border.all(color: AppColors.containerColor8, width: 2.r),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.03),
-                            blurRadius: 6,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      // fixed height with scroll
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxHeight: 420.h,
-                        ),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: companies.map((company) {
-                              final bool isSelected = selectedCompanies.contains(company);
-                              return GestureDetector(
-                                onTap: () {
-                                  if (isSelected) {
-                                    selectedCompanies.remove(company);
-                                  } else {
-                                    selectedCompanies.add(company);
-                                  }
-                                  // optionally close dropdown after selection:
-                                  // companyListOpen.value = false;
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  margin: EdgeInsets.symmetric(vertical: 8.h),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 14.w, vertical: 14.h),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8.r),
-                                    color: isSelected ? AppColors.containerColor1 : AppColors.tsWhite,
-                                    border: Border.all(color: AppColors.containerColor8),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      // circular radio-like icon
-                                      Container(
-                                        width: 28.r,
-                                        height: 28.r,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(color: AppColors.containerColor8, width: 2.r),
-                                          color: isSelected ? Colors.white : Colors.transparent,
-                                        ),
-                                        child: Center(
-                                          child: Container(
-                                            width: 12.r,
-                                            height: 12.r,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: isSelected ? AppColors.containerColor8 : Colors.transparent,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 12.w),
-                                      Expanded(
-                                        child: Text(
-                                          company,
-                                          style: h4.copyWith(
-                                            color: AppColors.normalBlue,
-                                            fontSize: 15.sp,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
-
-                  SizedBox(height: 18.h),
-
-                  // If dropdown is closed show the compact list items (regular layout)
-                  Obx(() {
-                    if (companyListOpen.value) {
-                      // when dropdown open we don't show the compact list below
-                      return const SizedBox.shrink();
-                    }
-                    // Show first N companies as in original compact layout
-                    final compactList = companies.take(5).toList();
-                    return Column(
-                      children: compactList.map((company) {
-                        final bool isSelected = selectedCompanies.contains(company);
-                        return GestureDetector(
-                          onTap: () {
-                            if (isSelected) selectedCompanies.remove(company);
-                            else selectedCompanies.add(company);
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.only(bottom: 12.h),
-                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.r),
-                              color: isSelected ? AppColors.containerColor1 : AppColors.tsWhite,
-                              border: Border.all(color: AppColors.containerColor8),
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.radio_button_checked,
-                                  color: AppColors.containerColor8,
-                                  size: 18.r,
-                                ),
-                                SizedBox(width: 8.w),
-                                Expanded(
-                                  child: Text(
-                                    company,
-                                    style: h4.copyWith(
-                                      color: AppColors.normalBlue,
-                                      fontSize: 15.sp,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    );
-                  }),
-
-                  SizedBox(height: 12.h),
-
-                  // Add Timeshare Company Button
-                  CustomButton(
-                    padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 12.h),
-                    color: AppColors.containerColor8,
-                    buttonContent: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.add, color: AppColors.normalBlue, size: 18.r),
-                        SizedBox(width: 8.w),
-                        Text(
-                          'Add Timeshare Company',
-                          style: h2.copyWith(color: AppColors.normalBlue, fontSize: 16.sp),
+                  return Container(
+                    margin: EdgeInsets.only(top: 6.h),
+                    padding: EdgeInsets.all(12.r),
+                    decoration: BoxDecoration(
+                      color: AppColors.tsWhite,
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(color: AppColors.containerColor8, width: 2.r),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.03),
+                          blurRadius: 6,
+                          offset: const Offset(0, 2),
                         ),
                       ],
                     ),
-                    onTap: () {
-                      // implement add company flow
-                    },
+                    // fixed height with scroll
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: 420.h,
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: companies.map((company) {
+                            final bool isSelected = selectedCompanies.contains(company);
+                            return GestureDetector(
+                              onTap: () {
+                                if (isSelected) {
+                                  selectedCompanies.remove(company);
+                                } else {
+                                  selectedCompanies.add(company);
+                                }
+                                // optionally close dropdown after selection:
+                                // companyListOpen.value = false;
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                margin: EdgeInsets.symmetric(vertical: 8.h),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 14.w, vertical: 14.h),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  color: isSelected ? AppColors.containerColor1 : AppColors.tsWhite,
+                                  border: Border.all(color: AppColors.containerColor8),
+                                ),
+                                child: Row(
+                                  children: [
+                                    // circular radio-like icon
+                                    Container(
+                                      width: 28.r,
+                                      height: 28.r,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(color: AppColors.containerColor8, width: 2.r),
+                                        color: isSelected ? Colors.white : Colors.transparent,
+                                      ),
+                                      child: Center(
+                                        child: Container(
+                                          width: 12.r,
+                                          height: 12.r,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: isSelected ? AppColors.containerColor8 : Colors.transparent,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 12.w),
+                                    Expanded(
+                                      child: Text(
+                                        company,
+                                        style: h4.copyWith(
+                                          color: AppColors.normalBlue,
+                                          fontSize: 15.sp,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+
+                SizedBox(height: 18.h),
+
+                // If dropdown is closed show the compact list items (regular layout)
+                Obx(() {
+                  if (companyListOpen.value) {
+                    // when dropdown open we don't show the compact list below
+                    return const SizedBox.shrink();
+                  }
+                  // Show first N companies as in original compact layout
+                  final compactList = companies.take(5).toList();
+                  return Column(
+                    spacing: 12.h,
+                    children: compactList.map((company) {
+                      final bool isSelected = selectedCompanies.contains(company);
+                      return GestureDetector(
+                        onTap: () {
+                          if (isSelected) selectedCompanies.remove(company);
+                          else selectedCompanies.add(company);
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.r),
+                            color: isSelected ? AppColors.containerColor1 : AppColors.tsTransparent,
+                            border: Border.all(
+                              color: AppColors.textColor1,
+                              width: 0.85.r,
+                            ),
+                          ),
+                          child: Row(
+                            spacing: 4.w,
+                            children: [
+                              Icon(
+                                isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+                                color: AppColors.containerColor8,
+                                size: 16.r,
+                              ),
+
+                              Expanded(
+                                child: Text(
+                                  company,
+                                  style: h4.copyWith(
+                                    color: AppColors.textColor6,
+                                    fontSize: 16.sp,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  );
+                }),
+
+                SizedBox(height: 12.h),
+
+                // Add Timeshare Company Button
+                CustomButton(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+                  color: AppColors.textColor1,
+                  buttonContent: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: 4.w,
+                    children: [
+                      Icon(
+                        Icons.add,
+                        color: AppColors.normalBlue,
+                        size: 24.r,
+                      ),
+
+                      Text(
+                        'Add Timeshare Company',
+                        style: h4.copyWith(
+                          color: AppColors.normalBlue,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ],
                   ),
+                  onTap: () {
+                    // implement add company flow
+                  },
+                ),
 
-                  SizedBox(height: 24.h),
+                SizedBox(height: 24.h),
 
-                  // Next Button aligned to right
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: CustomButton(
-                      padding: EdgeInsets.symmetric(horizontal: 32.w, vertical: 12.h),
+                // Next Button aligned to right
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    CustomButton(
+                      padding: EdgeInsets.symmetric(horizontal: 75.w, vertical: 10.h,),
                       color: AppColors.textColor1,
                       buttonContent: Center(
                         child: Text(
@@ -322,9 +365,9 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                         controller.goNext();
                       },
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
           ),
         );

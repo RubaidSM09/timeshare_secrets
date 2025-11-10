@@ -74,7 +74,7 @@ class SetProfileDocsView extends GetView<SetProfileDocsController> {
                         stepTracker: controller.stepTracker,
                       ),
 
-                      SizedBox(height: 12.h),
+                      SizedBox(height: 22.h),
 
                       // PageView with all steps (position of tracker is fixed)
                       Expanded(
