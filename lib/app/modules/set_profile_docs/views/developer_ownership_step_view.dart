@@ -6,6 +6,7 @@ import 'package:timeshare_secrets/app/modules/set_profile_docs/controllers/set_p
 import 'package:timeshare_secrets/common/app_colors.dart';
 import 'package:timeshare_secrets/common/custom_fonts.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
+import 'package:timeshare_secrets/common/widgets/custom_text_fields.dart';
 
 class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
   const DeveloperOwnershipStepView({super.key});
@@ -59,17 +60,17 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
           child: Row(
             children: [
               Icon(
-                Icons.radio_button_checked,
+                selected ? Icons.radio_button_checked : Icons.radio_button_off,
                 color: AppColors.containerColor8,
-                size: 18.r,
+                size: 16.r,
               ),
-              SizedBox(width: 8.w),
+              SizedBox(width: 4.w),
               Expanded(
                 child: Text(
                   label,
                   style: h4.copyWith(
-                    color: AppColors.normalBlue,
-                    fontSize: 15.sp,
+                    color: AppColors.textColor6,
+                    fontSize: 16.sp,
                   ),
                 ),
               ),
@@ -117,22 +118,24 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                   Text(
                     'Which best describes your\n[Developer] ownership?',
                     style: h2.copyWith(
-                      color: AppColors.normalBlue,
-                      fontSize: 22.sp,
+                      color: AppColors.tsBlack,
+                      fontSize: 20.sp,
                     ),
                   ),
 
-                  SizedBox(height: 8.h),
+                  SizedBox(height: 22.h),
 
-                  Text(
-                    'Select all that apply',
-                    style: h4.copyWith(
-                      color: AppColors.tsGray,
-                      fontSize: 14.sp,
+                  Center(
+                    child: Text(
+                      'Select all that apply',
+                      style: h4.copyWith(
+                        color: AppColors.textColor21,
+                        fontSize: 12.sp,
+                      ),
                     ),
                   ),
 
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 12.h),
 
                   // Ownership list
                   Obx(() {
@@ -149,27 +152,27 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                     );
                   }),
 
-                  SizedBox(height: 18.h),
+                  SizedBox(height: 12.h),
 
                   // Add Option button
                   CustomButton(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 30.w,
+                      horizontal: 8.w,
                       vertical: 10.h,
                     ),
-                    color: AppColors.containerColor8,
+                    color: AppColors.textColor1,
                     buttonContent: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.add,
                           color: AppColors.normalBlue,
-                          size: 18.r,
+                          size: 24.r,
                         ),
-                        SizedBox(width: 6.w),
+                        SizedBox(width: 4.w),
                         Text(
                           'Add Option',
-                          style: h2.copyWith(
+                          style: h4.copyWith(
                             color: AppColors.normalBlue,
                             fontSize: 16.sp,
                           ),
@@ -186,102 +189,196 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                   // Ownership Entity
                   Text(
                     'Ownership Entity',
-                    style: h3.copyWith(
+                    style: h2.copyWith(
                       color: AppColors.normalBlue,
-                      fontSize: 15.sp,
+                      fontSize: 18.sp,
                     ),
                   ),
 
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 6.h),
 
                   // Entity 1
                   Row(
                     children: [
                       Container(
-                        width: 32.w,
-                        height: 40.h,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.r),
-                          color: AppColors.containerColor8,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 6.h,
                         ),
-                        child: Text(
-                          '1',
-                          style: h3.copyWith(
-                            color: AppColors.normalBlue,
-                            fontSize: 14.sp,
+                        height: 44.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(6.r),
+                            bottomLeft: Radius.circular(6.r),
+                          ),
+                          color: AppColors.textColor1,
+                        ),
+                        child: Center(
+                          child: Text(
+                            '1',
+                            style: h2.copyWith(
+                              color: AppColors.tsBlack,
+                              fontSize: 14.sp,
+                            ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 8.w),
                       Expanded(
-                        child: TextField(
-                          controller: entity1Controller,
-                          decoration: buildFieldDecoration('Type Here'),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                          height: 44.h,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: AppColors.textColor24,
+                            ),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(6.r),
+                              bottomRight: Radius.circular(6.r),
+                            )
+                          ),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.zero,
+
+                              hintText: 'Type Here',
+                              hintStyle: h4.copyWith(
+                                color: AppColors.textColor23,
+                                fontSize: 14.sp,
+                              ),
+
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                              ),
+
+                              suffixIcon: SizedBox(
+                                width: 24.w,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Icon(
+                                      Icons.keyboard_arrow_down,
+                                      size: 20.r,
+                                      color: AppColors.normalBlue,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
 
-                  SizedBox(height: 8.h),
+                  SizedBox(height: 6.h),
 
                   // Entity 2
                   Row(
                     children: [
                       Container(
-                        width: 32.w,
-                        height: 40.h,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.r),
-                          color: AppColors.containerColor8,
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 6.h,
                         ),
-                        child: Text(
-                          '2',
-                          style: h3.copyWith(
-                            color: AppColors.normalBlue,
-                            fontSize: 14.sp,
+                        height: 44.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(6.r),
+                            bottomLeft: Radius.circular(6.r),
+                          ),
+                          color: AppColors.textColor1,
+                        ),
+                        child: Center(
+                          child: Text(
+                            '2',
+                            style: h2.copyWith(
+                              color: AppColors.tsBlack,
+                              fontSize: 14.sp,
+                            ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 8.w),
                       Expanded(
-                        child: TextField(
-                          controller: entity2Controller,
-                          decoration: buildFieldDecoration('Type Here'),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                          height: 44.h,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                color: AppColors.textColor24,
+                              ),
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(6.r),
+                                bottomRight: Radius.circular(6.r),
+                              )
+                          ),
+                          child: TextField(
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.zero,
+
+                                hintText: 'Type Here',
+                                hintStyle: h4.copyWith(
+                                  color: AppColors.textColor23,
+                                  fontSize: 14.sp,
+                                ),
+
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+
+                                suffixIcon: SizedBox(
+                                  width: 24.w,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Icon(
+                                        Icons.keyboard_arrow_down,
+                                        size: 20.r,
+                                        color: AppColors.normalBlue,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
 
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 16.h),
 
                   CustomButton(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 30.w,
+                      horizontal: 8.w,
                       vertical: 10.h,
                     ),
-                    color: AppColors.containerColor8,
+                    color: AppColors.textColor1,
                     buttonContent: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.add,
                           color: AppColors.normalBlue,
-                          size: 18.r,
+                          size: 24.r,
                         ),
-                        SizedBox(width: 6.w),
+                        SizedBox(width: 4.w),
                         Text(
                           'Add Another Property',
-                          style: h2.copyWith(
+                          style: h4.copyWith(
                             color: AppColors.normalBlue,
-                            fontSize: 15.sp,
+                            fontSize: 16.sp,
                           ),
                         ),
                       ],
                     ),
                     onTap: () {
-                      // TODO: add dynamic property rows if needed
+                      // TODO: show dialog to add option
                     },
                   ),
 
@@ -290,17 +387,18 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                   // Choose a Developer option
                   Text(
                     'Choose a Developer option',
-                    style: h3.copyWith(
+                    style: h2.copyWith(
                       color: AppColors.normalBlue,
-                      fontSize: 15.sp,
+                      fontSize: 18.sp,
                     ),
                   ),
 
-                  SizedBox(height: 10.h),
+                  SizedBox(height: 6.h),
 
                   Obx(() {
                     final RxString devOption = ''.obs;
                     return Row(
+                      spacing: 22.w,
                       children: [
                         Expanded(
                           child: GestureDetector(
@@ -308,30 +406,31 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 vertical: 10.h,
+                                horizontal: 16.w,
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.r),
+                                borderRadius: BorderRadius.circular(6.r),
                                 color: devOption.value == 'Developer'
                                     ? AppColors.containerColor1
                                     : AppColors.tsWhite,
                                 border: Border.all(
-                                  color: AppColors.containerColor8,
+                                  color: AppColors.textColor24,
                                 ),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                spacing: 8.w,
                                 children: [
                                   Icon(
-                                    Icons.radio_button_checked,
-                                    color: AppColors.containerColor8,
-                                    size: 18.r,
+                                    devOption.value == 'Developer' ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                                    color: AppColors.textColor1,
+                                    size: 16.r,
                                   ),
-                                  SizedBox(width: 6.w),
+
                                   Text(
                                     'Developer',
-                                    style: h4.copyWith(
+                                    style: h3.copyWith(
                                       color: AppColors.normalBlue,
-                                      fontSize: 14.sp,
+                                      fontSize: 16.sp,
                                     ),
                                   ),
                                 ],
@@ -339,37 +438,35 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10.w),
                         Expanded(
                           child: GestureDetector(
                             onTap: () => devOption.value = 'Resale',
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 vertical: 10.h,
+                                horizontal: 16.w,
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.r),
+                                borderRadius: BorderRadius.circular(6.r),
                                 color: devOption.value == 'Resale'
                                     ? AppColors.containerColor1
                                     : AppColors.tsWhite,
                                 border: Border.all(
-                                  color: AppColors.containerColor8,
+                                  color: AppColors.textColor24,
                                 ),
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                spacing: 8.w,
                                 children: [
-                                  Icon(
-                                    Icons.radio_button_checked,
-                                    color: AppColors.containerColor8,
-                                    size: 18.r,
+                                  Icon(devOption.value == 'Resale' ? Icons.radio_button_checked : Icons.radio_button_unchecked,
+                                    color: AppColors.textColor1,
+                                    size: 16.r,
                                   ),
-                                  SizedBox(width: 6.w),
                                   Text(
                                     'Resale',
-                                    style: h4.copyWith(
+                                    style: h3.copyWith(
                                       color: AppColors.normalBlue,
-                                      fontSize: 14.sp,
+                                      fontSize: 16.sp,
                                     ),
                                   ),
                                 ],
@@ -381,10 +478,11 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                     );
                   }),
 
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 24.h),
 
                   // Size & Unit Type/View
                   Row(
+                    spacing: 24.w,
                     children: [
                       Expanded(
                         child: Column(
@@ -392,45 +490,109 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                           children: [
                             Text(
                               'Size',
-                              style: h4.copyWith(
+                              style: h2.copyWith(
                                 color: AppColors.normalBlue,
-                                fontSize: 14.sp,
+                                fontSize: 18.sp,
                               ),
                             ),
                             SizedBox(height: 6.h),
-                            TextField(
-                              controller: sizeController,
-                              decoration: buildFieldDecoration('Type Here')
-                                  .copyWith(
-                                suffixIcon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: AppColors.tsGray,
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: AppColors.textColor24,
+                                  ),
+                                  borderRadius: BorderRadius.circular(6.r),
+                              ),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.zero,
+
+                                    hintText: 'Type Here',
+                                    hintStyle: h4.copyWith(
+                                      color: AppColors.textColor23,
+                                      fontSize: 14.sp,
+                                    ),
+
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+
+                                    suffixIcon: SizedBox(
+                                      width: 24.w,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Icon(
+                                            Icons.keyboard_arrow_down,
+                                            size: 20.r,
+                                            color: AppColors.normalBlue,
+                                          ),
+                                        ],
+                                      ),
+                                    )
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(width: 10.w),
+
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Unit Type/View',
-                              style: h4.copyWith(
+                              style: h2.copyWith(
                                 color: AppColors.normalBlue,
-                                fontSize: 14.sp,
+                                fontSize: 18.sp,
                               ),
                             ),
                             SizedBox(height: 6.h),
-                            TextField(
-                              controller: unitTypeController,
-                              decoration: buildFieldDecoration('Type Here')
-                                  .copyWith(
-                                suffixIcon: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  color: AppColors.tsGray,
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                              height: 44.h,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: AppColors.textColor24,
+                                ),
+                                borderRadius: BorderRadius.circular(6.r),
+                              ),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                    contentPadding: EdgeInsets.zero,
+
+                                    hintText: 'Type Here',
+                                    hintStyle: h4.copyWith(
+                                      color: AppColors.textColor23,
+                                      fontSize: 14.sp,
+                                    ),
+
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    ),
+
+                                    suffixIcon: SizedBox(
+                                      width: 24.w,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          Icon(
+                                            Icons.keyboard_arrow_down,
+                                            size: 20.r,
+                                            color: AppColors.normalBlue,
+                                          ),
+                                        ],
+                                      ),
+                                    )
                                 ),
                               ),
                             ),
@@ -440,35 +602,70 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                     ],
                   ),
 
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 24.h),
 
                   // Frequency
                   Text(
                     'Frequency',
-                    style: h4.copyWith(
+                    style: h2.copyWith(
                       color: AppColors.normalBlue,
-                      fontSize: 14.sp,
+                      fontSize: 18.sp,
                     ),
                   ),
                   SizedBox(height: 6.h),
-                  TextField(
-                    controller: frequencyController,
-                    decoration: buildFieldDecoration('Type Here').copyWith(
-                      suffixIcon: Icon(
-                        Icons.keyboard_arrow_down_rounded,
-                        color: AppColors.tsGray,
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                    height: 44.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppColors.textColor24,
+                      ),
+                      borderRadius: BorderRadius.circular(6.r),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+
+                          hintText: 'Type Here',
+                          hintStyle: h4.copyWith(
+                            color: AppColors.textColor23,
+                            fontSize: 14.sp,
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+
+                          suffixIcon: SizedBox(
+                            width: 24.w,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  Icons.keyboard_arrow_down,
+                                  size: 20.r,
+                                  color: AppColors.normalBlue,
+                                ),
+                              ],
+                            ),
+                          )
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 24.h),
 
                   // Seasons
-                  Text(
-                    'Seasons - Select all that apply',
-                    style: h3.copyWith(
-                      color: AppColors.normalBlue,
-                      fontSize: 15.sp,
+                  Center(
+                    child: Text(
+                      'Seasons - Select all that apply',
+                      style: h4.copyWith(
+                        color: AppColors.normalBlue,
+                        fontSize: 16.sp,
+                      ),
                     ),
                   ),
 
@@ -492,22 +689,22 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
 
                   CustomButton(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 30.w,
+                      horizontal: 8.w,
                       vertical: 10.h,
                     ),
-                    color: AppColors.containerColor8,
+                    color: AppColors.textColor1,
                     buttonContent: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.add,
                           color: AppColors.normalBlue,
-                          size: 18.r,
+                          size: 24.r,
                         ),
                         SizedBox(width: 6.w),
                         Text(
                           'Add Option',
-                          style: h2.copyWith(
+                          style: h4.copyWith(
                             color: AppColors.normalBlue,
                             fontSize: 16.sp,
                           ),
@@ -519,39 +716,87 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                     },
                   ),
 
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 24.h),
 
                   // Point value
                   Text(
                     'Point value',
-                    style: h4.copyWith(
+                    style: h2.copyWith(
                       color: AppColors.normalBlue,
-                      fontSize: 14.sp,
+                      fontSize: 18.sp,
                     ),
                   ),
-                  SizedBox(height: 6.h),
-                  TextField(
-                    controller: pointValueController,
-                    decoration: buildFieldDecoration('Type Here'),
+                  SizedBox(height: 12.h),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                    height: 44.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppColors.textColor24,
+                      ),
+                      borderRadius: BorderRadius.circular(6.r),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.zero,
+
+                          hintText: 'Type Here',
+                          hintStyle: h4.copyWith(
+                            color: AppColors.textColor23,
+                            fontSize: 14.sp,
+                          ),
+
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                      ),
+                    ),
                   ),
 
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 24.h),
 
                   // Hilton Honors Conversion
                   Text(
                     'Hilton Honors Conversion',
-                    style: h4.copyWith(
+                    style: h2.copyWith(
                       color: AppColors.normalBlue,
-                      fontSize: 14.sp,
+                      fontSize: 18.sp,
                     ),
                   ),
                   SizedBox(height: 6.h),
-                  TextField(
-                    controller: honorsConversionController,
-                    decoration: buildFieldDecoration('Type Here'),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                    height: 44.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: AppColors.textColor24,
+                      ),
+                      borderRadius: BorderRadius.circular(6.r),
+                    ),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.zero,
+
+                        hintText: 'Type Here',
+                        hintStyle: h4.copyWith(
+                          color: AppColors.textColor23,
+                          fontSize: 14.sp,
+                        ),
+
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
                   ),
 
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 125.h),
 
                   // Back / Next
                   Row(
@@ -561,10 +806,10 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                           onTap: controller.goBack,
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                              vertical: 12.h,
+                              vertical: 10.h,
                             ),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.r),
+                              borderRadius: BorderRadius.circular(6.r),
                               color: AppColors.tsWhite,
                               border: Border.all(
                                 color: AppColors.normalBlue,
@@ -575,7 +820,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                                 'Back',
                                 style: h2.copyWith(
                                   color: AppColors.normalBlue,
-                                  fontSize: 16.sp,
+                                  fontSize: 18.sp,
                                 ),
                               ),
                             ),
@@ -586,7 +831,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                       Expanded(
                         child: CustomButton(
                           padding: EdgeInsets.symmetric(
-                            vertical: 12.h,
+                            vertical: 10.h,
                           ),
                           color: AppColors.textColor1,
                           buttonContent: Center(
@@ -594,7 +839,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                               'Next',
                               style: h2.copyWith(
                                 color: AppColors.normalBlue,
-                                fontSize: 16.sp,
+                                fontSize: 18.sp,
                               ),
                             ),
                           ),

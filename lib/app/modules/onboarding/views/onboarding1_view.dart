@@ -43,7 +43,7 @@ class Onboarding1View extends GetView {
           SizedBox(height: 40.01.h,),
 
           Text(
-            'The Core Features :',
+            'The Core Features',
             style: h3.copyWith(
               color: AppColors.tsWhite,
               fontSize: 14.sp,

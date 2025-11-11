@@ -36,25 +36,29 @@ class Onboarding2View extends GetView {
           SizedBox(height: 44.h),
 
           Text(
-            'The Answer Features :',
+            'The Answer Features',
             style: h3.copyWith(color: AppColors.tsWhite, fontSize: 14.sp),
           ),
 
           SizedBox(height: 12.h),
 
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            spacing: 10.w,
             children: [
-              AnswerFeaturesCard(
-                icon: 'assets/images/onboarding/answer_features.svg',
-                title: 'Concise summaries',
-                subTitle: 'Just the facts, quick and to the point',
+              Expanded(
+                child: AnswerFeaturesCard(
+                  icon: 'assets/images/onboarding/answer_features.svg',
+                  title: 'Concise summaries',
+                  subTitle: 'Just the facts, quick and to the point',
+                ),
               ),
 
-              AnswerFeaturesCard(
-                icon: 'assets/images/onboarding/answer_features.svg',
-                title: 'Detailed breakdowns',
-                subTitle: 'In-depth explanations with context',
+              Expanded(
+                child: AnswerFeaturesCard(
+                  icon: 'assets/images/onboarding/answer_features.svg',
+                  title: 'Detailed breakdowns',
+                  subTitle: 'In-depth explanations with context',
+                ),
               ),
             ],
           ),
@@ -62,14 +66,14 @@ class Onboarding2View extends GetView {
           SizedBox(height: 24.17.h),
 
           Text(
-            'Languages It Speaks :',
+            'Languages It Speaks',
             style: h3.copyWith(color: AppColors.tsWhite, fontSize: 14.sp),
           ),
 
           SizedBox(height: 12.h),
 
           Wrap(
-            spacing: 14.w,
+            spacing: 8.w,
             runSpacing: 14.h,
             children: [
               LanguagesSpeakCard(language: 'English'),

@@ -21,6 +21,8 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
 
     final RxString selectedCompany = ''.obs;
 
+    final RxBool companyListOpen = false.obs;
+
     return LayoutBuilder(
       builder: (context, constraints) {
         return SingleChildScrollView(
@@ -40,39 +42,44 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                     ),
                   ),
 
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 12.h),
 
                   // Search row
                   Row(
+                    spacing: 24.w,
                     children: [
-                      // Search company name
+                      // Search box
                       Expanded(
                         child: Container(
                           padding: EdgeInsets.symmetric(
-                            horizontal: 16.w,
-                            vertical: 10.h,
-                          ),
+                              horizontal: 12.w, vertical: 6.h),
                           decoration: BoxDecoration(
-                            color: AppColors.tsWhite,
                             borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(
-                              color: AppColors.containerColor8,
-                            ),
+                            color: AppColors.tsWhite,
+                            border: Border.all(color: AppColors.textColor1,),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.tsBlack.withAlpha(38),
+                                blurRadius: 6.r,
+                                offset: Offset(1.w, 1.h),
+                              )
+                            ],
                           ),
                           child: Row(
+                            spacing: 4.w,
                             children: [
                               Icon(
                                 Icons.search,
-                                color: AppColors.tsGray,
+                                color: AppColors.textColor22,
                                 size: 18.r,
                               ),
-                              SizedBox(width: 8.w),
+
                               Expanded(
                                 child: Text(
                                   'Search company name',
                                   style: h4.copyWith(
-                                    color: AppColors.tsGray,
-                                    fontSize: 13.sp,
+                                    color: AppColors.textColor22,
+                                    fontSize: 10.sp,
                                   ),
                                 ),
                               ),
@@ -81,51 +88,65 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                         ),
                       ),
 
-                      SizedBox(width: 10.w),
-
-                      // List of company dropdown
-                      Container(
-                        width: 150.w,
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16.w,
-                          vertical: 10.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.tsWhite,
-                          borderRadius: BorderRadius.circular(8.r),
-                          border: Border.all(
-                            color: AppColors.containerColor8,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Icon(
-                              Icons.list_alt_rounded,
-                              color: AppColors.tsGray,
-                              size: 18.r,
+                      // Custom dropdown box (not built in)
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            companyListOpen.value = !companyListOpen.value;
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 12.w, vertical: 6.h),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.r),
+                              color: AppColors.tsWhite,
+                              border: Border.all(color: AppColors.textColor1,),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.tsBlack.withAlpha(38),
+                                  blurRadius: 6.r,
+                                  offset: Offset(1.w, 1.h),
+                                )
+                              ],
                             ),
-                            Expanded(
-                              child: Text(
-                                'List of company',
-                                style: h4.copyWith(
-                                  color: AppColors.tsGray,
-                                  fontSize: 13.sp,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.list,
+                                  color: AppColors.textColor10,
+                                  size: 18.r,
                                 ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
+
+                                SizedBox(width: 4.w),
+
+                                Expanded(
+                                  child: Text(
+                                    'List of company',
+                                    style: h4.copyWith(
+                                      color: AppColors.textColor22,
+                                      fontSize: 10.sp,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+
+                                Obx(() => Transform.rotate(
+                                  angle: companyListOpen.value ? 3.1416 : 0,
+                                  child: Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    color: AppColors.tsGray,
+                                    size: 18.r,
+                                  ),
+                                )),
+                              ],
                             ),
-                            Icon(
-                              Icons.keyboard_arrow_down_rounded,
-                              color: AppColors.tsGray,
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
                   ),
 
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 20.h),
 
                   // Companies list
                   Obx(() {
@@ -153,9 +174,9 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                             child: Row(
                               children: [
                                 Icon(
-                                  Icons.radio_button_checked,
+                                  isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
                                   color: AppColors.containerColor8,
-                                  size: 18.r,
+                                  size: 16.r,
                                 ),
                                 SizedBox(width: 8.w),
                                 Expanded(
@@ -175,27 +196,27 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                     );
                   }),
 
-                  SizedBox(height: 18.h),
+                  SizedBox(height: 12.h),
 
                   // Add Exchange Company button
                   CustomButton(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 30.w,
+                      horizontal: 8.w,
                       vertical: 10.h,
                     ),
-                    color: AppColors.containerColor8,
+                    color: AppColors.textColor1,
                     buttonContent: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.add,
                           color: AppColors.normalBlue,
-                          size: 18.r,
+                          size: 24.r,
                         ),
-                        SizedBox(width: 6.w),
+                        SizedBox(width: 4.w),
                         Text(
                           'Add Exchange Company',
-                          style: h2.copyWith(
+                          style: h4.copyWith(
                             color: AppColors.normalBlue,
                             fontSize: 16.sp,
                           ),
@@ -217,10 +238,10 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                           onTap: controller.goBack,
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                              vertical: 12.h,
+                              vertical: 10.h,
                             ),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.r),
+                              borderRadius: BorderRadius.circular(6.r),
                               color: AppColors.tsWhite,
                               border: Border.all(
                                 color: AppColors.normalBlue,
@@ -231,7 +252,7 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                                 'Back',
                                 style: h2.copyWith(
                                   color: AppColors.normalBlue,
-                                  fontSize: 16.sp,
+                                  fontSize: 18.sp,
                                 ),
                               ),
                             ),
@@ -242,7 +263,7 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                       Expanded(
                         child: CustomButton(
                           padding: EdgeInsets.symmetric(
-                            vertical: 12.h,
+                            vertical: 10.h,
                           ),
                           color: AppColors.textColor1,
                           buttonContent: Center(
@@ -250,7 +271,7 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                               'Next',
                               style: h2.copyWith(
                                 color: AppColors.normalBlue,
-                                fontSize: 16.sp,
+                                fontSize: 18.sp,
                               ),
                             ),
                           ),

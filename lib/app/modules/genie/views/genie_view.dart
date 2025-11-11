@@ -343,6 +343,7 @@ class GenieMessage extends StatelessWidget {
             color: AppColors.containerColor6,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 9.w,
             children: [
               Text(

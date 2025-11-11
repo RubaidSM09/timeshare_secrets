@@ -62,8 +62,8 @@ class CustomTextFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      decoration: const BoxDecoration(
-        // boxShadow: boxShadow, // (kept commented as in your original)
+      decoration: BoxDecoration(
+        boxShadow: boxShadow, // (kept commented as in your original)
       ),
       // Wrap with Obx so obscureText toggles immediately everywhere
       child: Obx(() => TextFormField(

@@ -30,7 +30,7 @@ class SignInView extends GetView<AuthenticationController> {
                 SizedBox(height: 53.h,),
 
                 SvgPicture.asset(
-                    'assets/images/onboarding/timeshare_secrets_logo_horizontal.svg'
+                    'assets/images/authentication/timeshare_logo.svg'
                 ),
 
                 SizedBox(height: 53.22.h,),

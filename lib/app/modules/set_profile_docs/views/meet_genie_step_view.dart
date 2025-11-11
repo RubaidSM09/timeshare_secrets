@@ -20,130 +20,124 @@ class MeetGenieStepView extends GetView<SetProfileDocsController> {
         return SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Padding(
-              padding: EdgeInsets.only(top: 24.h, bottom: 24.h),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox.shrink(),
-
-                  // Center content
-                  Column(
-                    children: [
-                      Text(
-                        'Meet Your Timeshare Genie',
-                        style: h2.copyWith(
-                          color: AppColors.normalBlue,
-                          fontSize: 24.sp,
-                        ),
-                        textAlign: TextAlign.center,
+            child: Column(
+              children: [
+                // Center content
+                Column(
+                  children: [
+                    Text(
+                      'Meet Your Timeshare Genie',
+                      style: h2.copyWith(
+                        color: AppColors.tsBlack,
+                        fontSize: 20.sp,
                       ),
+                      textAlign: TextAlign.center,
+                    ),
 
-                      SizedBox(height: 12.h),
+                    SizedBox(height: 8.h),
 
-                      Text(
-                        'Ask Genie any question — from booking rules to fees\n'
-                            'to resale — and receive clear, bias-free answers\n'
-                            'tailored to your ownership, in your preferred language.',
-                        style: h4.copyWith(
-                          color: AppColors.tsGray,
-                          fontSize: 14.sp,
-                        ),
-                        textAlign: TextAlign.center,
+                    Text(
+                      'Ask Genie any question — from booking rules to fees\n'
+                          'to resale — and receive clear, bias-free answers\n'
+                          'tailored to your ownership, in your preferred language.',
+                      style: h4.copyWith(
+                        color: AppColors.tsBlur,
+                        fontSize: 14.sp,
                       ),
+                      textAlign: TextAlign.start,
+                    ),
 
-                      SizedBox(height: 32.h),
+                    SizedBox(height: 36.h),
 
-                      // Genie circle icon
-                      Container(
-                        width: 170.r,
-                        height: 170.r,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.textColor1,
-                        ),
-                        alignment: Alignment.center,
-                        child: SvgPicture.asset(
-                          'assets/images/set_profile_docs/timeshare_genie.svg',
-                          // adjust size if needed
-                          height: 90.r,
+                    // Genie circle icon
+                    Container(
+                      height: 137.54.h,
+                      width: 140.w,
+                      padding: EdgeInsets.all(19.65.r),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.textColor1,
+                      ),
+                      child: SvgPicture.asset(
+                        'assets/images/set_profile_docs/time_genie.svg',
+                      ),
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 60.h,),
+
+                // Bottom buttons + caption
+                Column(
+                  children: [
+                    // Primary "Tap to speak with AI"
+                    CustomButton(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 30.w,
+                        vertical: 12.h,
+                      ),
+                      color: AppColors.textColor1,
+                      buttonContent: Center(
+                        child: Text(
+                          'Tap  to speak with AI',
+                          style: h2.copyWith(
+                            color: AppColors.normalBlue,
+                            fontSize: 18.sp,
+                          ),
                         ),
                       ),
-                    ],
-                  ),
+                      onTap: () {
+                        // TODO: navigate to Genie chat / voice screen
+                        Get.offAll(DashboardView());
+                        Get.to(GenieView());
+                      },
+                    ),
 
-                  // Bottom buttons + caption
-                  Column(
-                    children: [
-                      // Primary "Tap to speak with AI"
-                      CustomButton(
+                    SizedBox(height: 16.h),
+
+                    // Secondary "Skip"
+                    GestureDetector(
+                      onTap: () {
+                        Get.offAll(DashboardView());
+                      },
+                      child: Container(
+                        width: double.infinity,
                         padding: EdgeInsets.symmetric(
                           horizontal: 30.w,
                           vertical: 12.h,
                         ),
-                        color: AppColors.textColor1,
-                        buttonContent: Center(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.r),
+                          color: AppColors.tsWhite,
+                          border: Border.all(
+                            color: AppColors.normalBlue,
+                          ),
+                        ),
+                        child: Center(
                           child: Text(
-                            'Tap  to speak with AI',
+                            'Skip',
                             style: h2.copyWith(
                               color: AppColors.normalBlue,
                               fontSize: 18.sp,
                             ),
                           ),
                         ),
-                        onTap: () {
-                          // TODO: navigate to Genie chat / voice screen
-                          Get.offAll(DashboardView());
-                          Get.to(GenieView());
-                        },
                       ),
+                    ),
 
-                      SizedBox(height: 16.h),
+                    SizedBox(height: 12.h),
 
-                      // Secondary "Skip"
-                      GestureDetector(
-                        onTap: () {
-                          Get.offAll(DashboardView());
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 30.w,
-                            vertical: 12.h,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.r),
-                            color: AppColors.tsWhite,
-                            border: Border.all(
-                              color: AppColors.normalBlue,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Skip',
-                              style: h2.copyWith(
-                                color: AppColors.normalBlue,
-                                fontSize: 18.sp,
-                              ),
-                            ),
-                          ),
-                        ),
+                    Text(
+                      'You can speak with ai later in the app',
+                      style: h4.copyWith(
+                        color: AppColors.tsGray,
+                        fontSize: 13.sp,
                       ),
-
-                      SizedBox(height: 12.h),
-
-                      Text(
-                        'You can speak with ai later in the app',
-                        style: h4.copyWith(
-                          color: AppColors.tsGray,
-                          fontSize: 13.sp,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         );

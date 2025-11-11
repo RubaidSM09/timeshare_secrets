@@ -6,6 +6,7 @@ import 'package:timeshare_secrets/app/modules/set_profile_docs/controllers/set_p
 import 'package:timeshare_secrets/common/app_colors.dart';
 import 'package:timeshare_secrets/common/custom_fonts.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
+import 'package:timeshare_secrets/common/widgets/custom_text_fields.dart';
 
 class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
   const DeveloperCompaniesStepView({super.key});
@@ -174,27 +175,20 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                   if (!companyListOpen.value) return const SizedBox.shrink();
 
                   return Container(
-                    margin: EdgeInsets.only(top: 6.h),
-                    padding: EdgeInsets.all(12.r),
+                    padding: EdgeInsets.symmetric(horizontal: 17.w, vertical: 21.h),
                     decoration: BoxDecoration(
                       color: AppColors.tsWhite,
                       borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(color: AppColors.containerColor8, width: 2.r),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.03),
-                          blurRadius: 6,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
+                      border: Border.all(color: AppColors.textColor1,),
                     ),
                     // fixed height with scroll
                     child: ConstrainedBox(
                       constraints: BoxConstraints(
-                        maxHeight: 420.h,
+                        maxHeight: 778.h,
                       ),
                       child: SingleChildScrollView(
                         child: Column(
+                          spacing: 12.h,
                           children: companies.map((company) {
                             final bool isSelected = selectedCompanies.contains(company);
                             return GestureDetector(
@@ -209,43 +203,29 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                               },
                               child: Container(
                                 width: double.infinity,
-                                margin: EdgeInsets.symmetric(vertical: 8.h),
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 14.w, vertical: 14.h),
+                                    horizontal: 8.w, vertical: 10.h),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8.r),
                                   color: isSelected ? AppColors.containerColor1 : AppColors.tsWhite,
                                   border: Border.all(color: AppColors.containerColor8),
                                 ),
                                 child: Row(
+                                  spacing: 4.w,
                                   children: [
                                     // circular radio-like icon
-                                    Container(
-                                      width: 28.r,
-                                      height: 28.r,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(color: AppColors.containerColor8, width: 2.r),
-                                        color: isSelected ? Colors.white : Colors.transparent,
-                                      ),
-                                      child: Center(
-                                        child: Container(
-                                          width: 12.r,
-                                          height: 12.r,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: isSelected ? AppColors.containerColor8 : Colors.transparent,
-                                          ),
-                                        ),
-                                      ),
+                                    Icon(
+                                      isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+                                      color: AppColors.containerColor8,
+                                      size: 16.r,
                                     ),
-                                    SizedBox(width: 12.w),
+
                                     Expanded(
                                       child: Text(
                                         company,
                                         style: h4.copyWith(
-                                          color: AppColors.normalBlue,
-                                          fontSize: 15.sp,
+                                          color: AppColors.textColor6,
+                                          fontSize: 16.sp,
                                         ),
                                       ),
                                     ),
@@ -342,7 +322,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                     ],
                   ),
                   onTap: () {
-                    // implement add company flow
+                    Get.dialog(AddTimeshareCompany());
                   },
                 ),
 
@@ -367,11 +347,127 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                     ),
                   ],
                 ),
+
+                SizedBox(height: 24.h),
               ],
             ),
           ),
         );
       },
+    );
+  }
+}
+
+
+class AddTimeshareCompany extends StatelessWidget {
+  const AddTimeshareCompany({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      insetPadding: EdgeInsets.symmetric(horizontal: 20.w),
+      backgroundColor: AppColors.tsWhite,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h,),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Add Timeshare Company',
+              style: h1.copyWith(
+                color: AppColors.textColor12,
+                fontSize: 24.sp,
+              ),
+            ),
+
+            SizedBox(height: 16.h,),
+
+            CustomTextFields(
+              width: double.infinity,
+              hintText: 'Enter company name',
+              hintTextColor: AppColors.textColor22,
+              borderColor: AppColors.textColor1,
+              borderRadius: 6.r,
+              color: AppColors.tsWhite,
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h,),
+              prefixIcon: 'assets/images/set_profile_docs/company_name.png',
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.tsBlack.withAlpha(38),
+                  blurRadius: 6.r,
+                  offset: Offset(1.w, 1.h,),
+                )
+              ],
+              isObscureText: false.obs,
+            ),
+
+            SizedBox(height: 16.h,),
+
+            CustomTextFields(
+              width: double.infinity,
+              hintText: 'Enter company official email',
+              hintTextColor: AppColors.textColor22,
+              borderColor: AppColors.textColor1,
+              borderRadius: 6.r,
+              color: AppColors.tsWhite,
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h,),
+              prefixIcon: 'assets/images/set_profile_docs/company_official_mail.png',
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.tsBlack.withAlpha(38),
+                  blurRadius: 6.r,
+                  offset: Offset(1.w, 1.h,),
+                )
+              ],
+              isObscureText: false.obs,
+            ),
+
+            SizedBox(height: 24.h,),
+
+            Row(
+              spacing: 17.w,
+              children: [
+                Expanded(
+                  child: CustomButton(
+                    padding: EdgeInsets.all(10.r),
+                    border: Border.all(
+                      color: AppColors.textColor13,
+                    ),
+                    buttonContent: Center(
+                      child: Text(
+                        'Cancel',
+                        style: h1.copyWith(
+                          color: AppColors.textColor13,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ),
+                    onTap: () => Get.back(),
+                  ),
+                ),
+
+                Expanded(
+                  child: CustomButton(
+                    padding: EdgeInsets.all(10.r),
+                    color: AppColors.textColor1,
+                    buttonContent: Center(
+                      child: Text(
+                        'Add',
+                        style: h1.copyWith(
+                          color: AppColors.normalBlue,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ),
+                    onTap: () => Get.back(),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }

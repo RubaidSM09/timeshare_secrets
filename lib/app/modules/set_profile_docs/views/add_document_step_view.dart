@@ -184,7 +184,7 @@ class AddDocumentStepView extends GetView<SetProfileDocsController> {
                     ),
                   ),
                   onTap: () {
-                    // TODO: implement upload logic
+                    controller.goNext();
                   },
                 ),
 

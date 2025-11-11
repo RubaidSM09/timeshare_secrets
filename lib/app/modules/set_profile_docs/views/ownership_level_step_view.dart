@@ -32,31 +32,32 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
           child: Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(
-              horizontal: 16.w,
-              vertical: 14.h,
+              horizontal: 8.w,
+              vertical: 10.h,
             ),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.r),
+              borderRadius: BorderRadius.circular(6.r),
               color:
               isSelected ? AppColors.containerColor1 : AppColors.tsWhite,
               border: Border.all(
-                color: AppColors.containerColor8,
+                color: AppColors.textColor1,
+                width: 0.85.r,
               ),
             ),
             child: Row(
               children: [
                 Icon(
-                  Icons.radio_button_checked,
-                  color: AppColors.containerColor8,
-                  size: 18.r,
+                  isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+                  color: AppColors.textColor1,
+                  size: 16.r,
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
                   child: Text(
                     label,
                     style: h4.copyWith(
-                      color: AppColors.normalBlue,
-                      fontSize: 15.sp,
+                      color: AppColors.textColor6,
+                      fontSize: 16.sp,
                     ),
                   ),
                 ),
@@ -82,21 +83,23 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                     'Which best describes your\n[Developer] ownership level ?',
                     style: h2.copyWith(
                       color: AppColors.normalBlue,
-                      fontSize: 22.sp,
+                      fontSize: 20.sp,
                     ),
                   ),
 
-                  SizedBox(height: 8.h),
+                  SizedBox(height: 10.h),
 
-                  Text(
-                    'Select all that apply',
-                    style: h4.copyWith(
-                      color: AppColors.tsGray,
-                      fontSize: 14.sp,
+                  Center(
+                    child: Text(
+                      'Select all that apply',
+                      style: h4.copyWith(
+                        color: AppColors.textColor21,
+                        fontSize: 12.sp,
+                      ),
                     ),
                   ),
 
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 12.h),
 
                   // Levels list
                   Column(
@@ -109,22 +112,22 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                   // Add Level Name button
                   CustomButton(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 30.w,
+                      horizontal: 8.w,
                       vertical: 10.h,
                     ),
-                    color: AppColors.containerColor8,
+                    color: AppColors.textColor1,
                     buttonContent: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
                           Icons.add,
                           color: AppColors.normalBlue,
-                          size: 18.r,
+                          size: 24.r,
                         ),
-                        SizedBox(width: 6.w),
+                        SizedBox(width: 4.w),
                         Text(
                           'Add Level Name',
-                          style: h2.copyWith(
+                          style: h4.copyWith(
                             color: AppColors.normalBlue,
                             fontSize: 16.sp,
                           ),
@@ -146,10 +149,10 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                           onTap: controller.goBack,
                           child: Container(
                             padding: EdgeInsets.symmetric(
-                              vertical: 12.h,
+                              vertical: 10.h,
                             ),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.r),
+                              borderRadius: BorderRadius.circular(6.r),
                               color: AppColors.tsWhite,
                               border: Border.all(
                                 color: AppColors.normalBlue,
@@ -160,7 +163,7 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                                 'Back',
                                 style: h2.copyWith(
                                   color: AppColors.normalBlue,
-                                  fontSize: 16.sp,
+                                  fontSize: 18.sp,
                                 ),
                               ),
                             ),
@@ -171,7 +174,7 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                       Expanded(
                         child: CustomButton(
                           padding: EdgeInsets.symmetric(
-                            vertical: 12.h,
+                            vertical: 10.h,
                           ),
                           color: AppColors.textColor1,
                           buttonContent: Center(
@@ -179,7 +182,7 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                               'Next',
                               style: h2.copyWith(
                                 color: AppColors.normalBlue,
-                                fontSize: 16.sp,
+                                fontSize: 18.sp,
                               ),
                             ),
                           ),
