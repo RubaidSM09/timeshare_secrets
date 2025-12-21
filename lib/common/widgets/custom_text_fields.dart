@@ -43,7 +43,7 @@ class CustomTextFields extends StatelessWidget {
     this.padding = const EdgeInsets.symmetric(horizontal: 15.47, vertical: 17),
     this.borderColor = AppColors.borderColor1,
     this.borderRadius = 12,
-    this.boxShadow = const [BoxShadow()],
+    this.boxShadow,
     this.hintTextColor = AppColors.borderColor1,
     this.maxLine = 1,
     this.controller,
