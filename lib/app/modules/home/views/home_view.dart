@@ -149,6 +149,7 @@ class HomeView extends GetView<HomeController> {
                               ),
 
                               StoragePlanChipsGrid(
+
                                 titles: const [
                                   'Storage 2GB',
                                   '50 AI queries',
@@ -247,31 +248,31 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       RichText(
                         text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Free ',
-                              style: h2.copyWith(
-                                color: AppColors.textColor1,
-                                fontSize: 24.sp,
-                              )
-                            ),
+                            children: [
+                              TextSpan(
+                                  text: 'Free ',
+                                  style: h2.copyWith(
+                                    color: AppColors.textColor1,
+                                    fontSize: 24.sp,
+                                  )
+                              ),
 
-                            TextSpan(
+                              TextSpan(
                                 text: '14-Days',
                                 style: h2.copyWith(
                                   color: AppColors.normalBlue,
                                   fontSize: 20.sp,
                                 ),
-                            ),
+                              ),
 
-                            TextSpan(
-                                text: ' Trial',
-                                style: h2.copyWith(
-                                  color: AppColors.textColor1,
-                                  fontSize: 24.sp,
-                                )
-                            ),
-                          ]
+                              TextSpan(
+                                  text: ' Trial',
+                                  style: h2.copyWith(
+                                    color: AppColors.textColor1,
+                                    fontSize: 24.sp,
+                                  )
+                              ),
+                            ]
                         ),
                       ),
 
@@ -464,17 +465,18 @@ class QueryTopicsCard extends StatelessWidget {
         ),
       ),
       child: Row(
-        spacing: 4.w,
         children: [
           SvgPicture.asset(
             icon,
           ),
-
-          Text(
-            title,
-            style: h4.copyWith(
-              color: AppColors.textColor6,
-              fontSize: 12.sp,
+          SizedBox(width: 6.w),
+          Expanded(
+            child: Text(
+              title,
+              style: h4.copyWith(
+                color: AppColors.textColor6,
+                fontSize: 12.sp,
+              ),
             ),
           )
         ],
@@ -585,7 +587,7 @@ class StoragePlanChipsGrid extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               for (int j = 0; j < slice.length; j++) ...[
-                StoragePlanCard(title: slice[j], width: chipWidth+3.25),
+                StoragePlanCard(title: slice[j], width: chipWidth),
                 if (j != slice.length - 1) SizedBox(width: colSpacing.w),
               ],
             ],
@@ -640,7 +642,6 @@ class SmartAlertsCard extends StatelessWidget {
               ),
             ),
             child: Row(
-              spacing: 72.w,
               children: [
                 Row(
                   spacing: 10.w,
@@ -674,7 +675,7 @@ class SmartAlertsCard extends StatelessWidget {
                     )
                   ],
                 ),
-
+                Spacer(),
                 GestureDetector(
                   onTap: () {
                     DeleteClicked(index);
