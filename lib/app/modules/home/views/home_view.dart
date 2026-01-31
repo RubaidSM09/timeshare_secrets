@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
 
 import 'package:get/get.dart';
+import 'package:timeshare_secrets/app/modules/profile/views/subscription_plans_view.dart';
+import 'package:timeshare_secrets/app/modules/vault/views/vault_view.dart';
 import 'package:timeshare_secrets/common/app_colors.dart';
 import 'package:timeshare_secrets/common/custom_fonts.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
@@ -149,7 +151,6 @@ class HomeView extends GetView<HomeController> {
                               ),
 
                               StoragePlanChipsGrid(
-
                                 titles: const [
                                   'Storage 2GB',
                                   '50 AI queries',
@@ -207,7 +208,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ),
                         ),
-                        onTap: () {  },
+                        onTap: () => Get.to(VaultView()),
                       ),
                     ),
 
@@ -227,7 +228,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ),
                         ),
-                        onTap: () {  },
+                        onTap: () => Get.to(VaultView()),
                       ),
                     ),
                   ],
@@ -235,98 +236,105 @@ class HomeView extends GetView<HomeController> {
 
                 SizedBox(height: 40.h,),
 
-                Container(
-                  padding: EdgeInsets.all(16.r),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    gradient: LinearGradient(
-                      colors: AppColors.containerGradientColor2,
-                    ),
-                  ),
-                  child: Column(
-                    spacing: 16.h,
-                    children: [
-                      RichText(
-                        text: TextSpan(
-                            children: [
-                              TextSpan(
-                                  text: 'Free ',
-                                  style: h2.copyWith(
-                                    color: AppColors.textColor1,
-                                    fontSize: 24.sp,
-                                  )
-                              ),
-
-                              TextSpan(
-                                text: '14-Days',
-                                style: h2.copyWith(
-                                  color: AppColors.normalBlue,
-                                  fontSize: 20.sp,
-                                ),
-                              ),
-
-                              TextSpan(
-                                  text: ' Trial',
-                                  style: h2.copyWith(
-                                    color: AppColors.textColor1,
-                                    fontSize: 24.sp,
-                                  )
-                              ),
-                            ]
-                        ),
+                GestureDetector(
+                  onTap: () => Get.to(SubscriptionPlansView()),
+                  child: Container(
+                    padding: EdgeInsets.all(16.r),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.r),
+                      gradient: LinearGradient(
+                        colors: AppColors.containerGradientColor2,
                       ),
-
-                      Column(
-                        spacing: 6.h,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '🎉',
-                                style: h4.copyWith(
-                                  color: AppColors.textColor8,
-                                  fontSize: 30.sp,
+                    ),
+                    child: Column(
+                      spacing: 16.h,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                              children: [
+                                TextSpan(
+                                    text: 'Free ',
+                                    style: h2.copyWith(
+                                      color: AppColors.textColor1,
+                                      fontSize: 24.sp,
+                                    )
                                 ),
-                              ),
-
-                              Column(
-                                spacing: 6.h,
-                                children: [
-                                  Text(
-                                    'Upgrade to Gold Plan',
-                                    style: h4.copyWith(
-                                      color: AppColors.textColor9,
-                                      fontSize: 18.sp,
-                                    ),
+                  
+                                TextSpan(
+                                  text: '14-Days',
+                                  style: h2.copyWith(
+                                    color: AppColors.normalBlue,
+                                    fontSize: 20.sp,
                                   ),
-
-                                  SizedBox(
-                                    width: 239.w,
-                                    child: Text(
-                                      'Free testing of plus plan to get better experience and feel the difference between plans',
-                                      style: h4.copyWith(
-                                        color: AppColors.textColor1,
-                                        fontSize: 12.sp,
+                                ),
+                  
+                                TextSpan(
+                                    text: ' Trial',
+                                    style: h2.copyWith(
+                                      color: AppColors.textColor1,
+                                      fontSize: 24.sp,
+                                    )
+                                ),
+                              ]
+                          ),
+                        ),
+                  
+                        Column(
+                          spacing: 6.h,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '🎉',
+                                  style: h4.copyWith(
+                                    color: AppColors.textColor8,
+                                    fontSize: 30.sp,
+                                  ),
+                                ),
+                  
+                                Column(
+                                  spacing: 6.h,
+                                  children: [
+                                    Text(
+                                      'Upgrade to Gold Plan',
+                                      style: h3.copyWith(
+                                        color: AppColors.textColor9,
+                                        fontSize: 18.sp,
                                       ),
-                                      textAlign: TextAlign.center,
+                                    ),
+                  
+                                    SizedBox(
+                                      width: 239.w,
+                                      child: Text(
+                                        'Free testing of plus plan to get better experience and feel the difference between plans',
+                                        style: h4.copyWith(
+                                          color: AppColors.textColor1,
+                                          fontSize: 12.sp,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                  
+                                Transform(
+                                  alignment: Alignment.center,
+                                  transform: Matrix4.rotationY(math.pi),
+                                  child: Text(
+                                    '🎉',
+                                    style: h4.copyWith(
+                                      color: AppColors.textColor8,
+                                      fontSize: 30.sp,
                                     ),
                                   ),
-                                ],
-                              ),
-
-                              Text(
-                                '🎉',
-                                style: h4.copyWith(
-                                  color: AppColors.textColor8,
-                                  fontSize: 30.sp,
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
-                      )
-                    ],
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
 
@@ -465,18 +473,17 @@ class QueryTopicsCard extends StatelessWidget {
         ),
       ),
       child: Row(
+        spacing: 4.w,
         children: [
           SvgPicture.asset(
             icon,
           ),
-          SizedBox(width: 6.w),
-          Expanded(
-            child: Text(
-              title,
-              style: h4.copyWith(
-                color: AppColors.textColor6,
-                fontSize: 12.sp,
-              ),
+
+          Text(
+            title,
+            style: h4.copyWith(
+              color: AppColors.textColor6,
+              fontSize: 12.sp,
             ),
           )
         ],
@@ -587,7 +594,7 @@ class StoragePlanChipsGrid extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               for (int j = 0; j < slice.length; j++) ...[
-                StoragePlanCard(title: slice[j], width: chipWidth),
+                StoragePlanCard(title: slice[j], width: chipWidth+3.25),
                 if (j != slice.length - 1) SizedBox(width: colSpacing.w),
               ],
             ],
@@ -633,7 +640,7 @@ class SmartAlertsCard extends StatelessWidget {
             padding: EdgeInsets.all(12.r),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6.r),
-              color: AppColors.tsWhite.withAlpha(26),
+              color: AppColors.tsWhite.withOpacity(0.15),
               border: Border(
                 left: BorderSide(
                   color: isActive ? AppColors.textColor1 : AppColors.tsWhite,
@@ -661,6 +668,7 @@ class SmartAlertsCard extends StatelessWidget {
                           style: h3.copyWith(
                             color: AppColors.tsWhite,
                             fontSize: 12.sp,
+                            height: 1.7.h,
                           ),
                         ),
 
@@ -669,6 +677,7 @@ class SmartAlertsCard extends StatelessWidget {
                           style: h4.copyWith(
                             color: AppColors.textColor1,
                             fontSize: 10.sp,
+                            height: 1.7.h,
                           ),
                         ),
                       ],

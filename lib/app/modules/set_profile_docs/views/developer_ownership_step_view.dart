@@ -23,7 +23,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
       'Not Sure',
     ].obs;
 
-    final RxString selectedOwnership = ''.obs;
+    final RxList<String> selectedOwnership = <String>[].obs;
 
     final RxList<String> seasonOptions = <String>[
       'Platinum',
@@ -31,7 +31,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
       'Not Sure',
     ].obs;
 
-    final RxString selectedSeason = ''.obs;
+    final RxList<String> selectedSeason = <String>[].obs;
 
     final TextEditingController entity1Controller = TextEditingController();
     final TextEditingController entity2Controller = TextEditingController();
@@ -59,10 +59,26 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
           ),
           child: Row(
             children: [
-              Icon(
-                selected ? Icons.radio_button_checked : Icons.radio_button_off,
-                color: AppColors.containerColor8,
-                size: 16.r,
+              Container(
+                padding: EdgeInsets.all(2.r),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColors.textColor1,
+                    width: 1.5.r,
+                  ),
+                ),
+                child: Container(
+                  padding: EdgeInsets.all(2.835.r),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: selected ? AppColors.textColor1 : AppColors.tsTransparent,
+                      border: Border.all(
+                        color: AppColors.textColor1,
+                        width: 1.r,
+                      )
+                  ),
+                ),
               ),
               SizedBox(width: 4.w),
               Expanded(
@@ -142,11 +158,17 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                     return Column(
                       spacing: 12.h,
                       children: ownershipOptions.map((o) {
-                        final selected = selectedOwnership.value == o;
+                        final selected = selectedOwnership.contains(o);
                         return buildSelectTile(
                           label: o,
                           selected: selected,
-                          onTap: () => selectedOwnership.value = o,
+                          onTap: () {
+                            if (selected) {
+                              selectedOwnership.remove(o);
+                            } else {
+                              selectedOwnership.add(o);
+                            }
+                          },
                         );
                       }).toList(),
                     );
@@ -253,7 +275,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                                 borderSide: BorderSide.none,
                               ),
 
-                              suffixIcon: SizedBox(
+                              /*suffixIcon: SizedBox(
                                 width: 24.w,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -265,7 +287,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                                     ),
                                   ],
                                 ),
-                              )
+                              )*/
                             ),
                           ),
                         ),
@@ -331,7 +353,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                                   borderSide: BorderSide.none,
                                 ),
 
-                                suffixIcon: SizedBox(
+                                /*suffixIcon: SizedBox(
                                   width: 24.w,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
@@ -343,7 +365,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                                       ),
                                     ],
                                   ),
-                                )
+                                )*/
                             ),
                           ),
                         ),
@@ -396,13 +418,12 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                   SizedBox(height: 6.h),
 
                   Obx(() {
-                    final RxString devOption = ''.obs;
                     return Row(
                       spacing: 22.w,
                       children: [
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => devOption.value = 'Developer',
+                            onTap: () => controller.devOption.value = 'Developer',
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 vertical: 10.h,
@@ -410,7 +431,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.r),
-                                color: devOption.value == 'Developer'
+                                color: controller.devOption.value == 'Developer'
                                     ? AppColors.containerColor1
                                     : AppColors.tsWhite,
                                 border: Border.all(
@@ -420,10 +441,26 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                               child: Row(
                                 spacing: 8.w,
                                 children: [
-                                  Icon(
-                                    devOption.value == 'Developer' ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                                    color: AppColors.textColor1,
-                                    size: 16.r,
+                                  Container(
+                                    padding: EdgeInsets.all(2.r),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: AppColors.textColor1,
+                                        width: 1.5.r,
+                                      ),
+                                    ),
+                                    child: Container(
+                                      padding: EdgeInsets.all(2.835.r),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: controller.devOption.value == 'Developer' ? AppColors.textColor1 : AppColors.tsTransparent,
+                                          border: Border.all(
+                                            color: AppColors.textColor1,
+                                            width: 1.r,
+                                          )
+                                      ),
+                                    ),
                                   ),
 
                                   Text(
@@ -440,7 +477,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                         ),
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => devOption.value = 'Resale',
+                            onTap: () => controller.devOption.value = 'Resale',
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 vertical: 10.h,
@@ -448,7 +485,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.r),
-                                color: devOption.value == 'Resale'
+                                color: controller.devOption.value == 'Resale'
                                     ? AppColors.containerColor1
                                     : AppColors.tsWhite,
                                 border: Border.all(
@@ -458,10 +495,28 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                               child: Row(
                                 spacing: 8.w,
                                 children: [
-                                  Icon(devOption.value == 'Resale' ? Icons.radio_button_checked : Icons.radio_button_unchecked,
-                                    color: AppColors.textColor1,
-                                    size: 16.r,
+                                  Container(
+                                    padding: EdgeInsets.all(2.r),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: AppColors.textColor1,
+                                        width: 1.5.r,
+                                      ),
+                                    ),
+                                    child: Container(
+                                      padding: EdgeInsets.all(2.835.r),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: controller.devOption.value == 'Resale' ? AppColors.textColor1 : AppColors.tsTransparent,
+                                          border: Border.all(
+                                            color: AppColors.textColor1,
+                                            width: 1.r,
+                                          )
+                                      ),
+                                    ),
                                   ),
+
                                   Text(
                                     'Resale',
                                     style: h3.copyWith(
@@ -675,11 +730,17 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                     return Column(
                       spacing: 12.h,
                       children: seasonOptions.map((s) {
-                        final selected = selectedSeason.value == s;
+                        final selected = selectedSeason.contains(s);
                         return buildSelectTile(
                           label: s,
                           selected: selected,
-                          onTap: () => selectedSeason.value = s,
+                          onTap: () {
+                            if (selected) {
+                              selectedSeason.remove(s);
+                            } else {
+                              selectedSeason.add(s);
+                            }
+                          },
                         );
                       }).toList(),
                     );

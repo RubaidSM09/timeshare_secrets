@@ -26,6 +26,8 @@ class SetProfileDocsController extends GetxController {
   // progress bar booleans
   RxList<RxBool> stepTracker = <RxBool>[].obs;
 
+  final RxString devOption = ''.obs;
+
   static const int _documentStepCount = 8;
   static const int _imageStepCount = 8;
 

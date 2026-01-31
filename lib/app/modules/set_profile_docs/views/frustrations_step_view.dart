@@ -20,13 +20,19 @@ class FrustrationsStepView extends GetView<SetProfileDocsController> {
       'Resale / exit concerns',
     ].obs;
 
-    final RxString selectedOption = ''.obs;
+    final RxList<String> selectedOption = <String>[].obs;
 
     Widget buildOptionTile(String label) {
       return Obx(() {
-        final bool isSelected = selectedOption.value == label;
+        final bool isSelected = selectedOption.contains(label);
         return GestureDetector(
-          onTap: () => selectedOption.value = label,
+          onTap: () {
+            if (isSelected) {
+              selectedOption.remove(label);
+            } else {
+              selectedOption.add(label);
+            }
+          },
           child: Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(
@@ -44,10 +50,26 @@ class FrustrationsStepView extends GetView<SetProfileDocsController> {
             ),
             child: Row(
               children: [
-                Icon(
-                  isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-                  color: AppColors.textColor1,
-                  size: 16.r,
+                Container(
+                  padding: EdgeInsets.all(2.r),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: AppColors.textColor1,
+                      width: 1.5.r,
+                    ),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.all(2.835.r),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: isSelected ? AppColors.textColor1 : AppColors.tsTransparent,
+                        border: Border.all(
+                          color: AppColors.textColor1,
+                          width: 1.r,
+                        )
+                    ),
+                  ),
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
@@ -137,7 +159,7 @@ class FrustrationsStepView extends GetView<SetProfileDocsController> {
                     },
                   ),
 
-                  SizedBox(height: 32.h),
+                  SizedBox(height: 40.h),
 
                   // Back / Next row
                   Row(

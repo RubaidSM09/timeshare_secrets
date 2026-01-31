@@ -74,7 +74,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 12.w, vertical: 6.h),
+                            horizontal: 12.w, vertical: 10.h),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.r),
                           color: AppColors.tsWhite,
@@ -97,11 +97,20 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                             ),
 
                             Expanded(
-                              child: Text(
-                                'Search company name',
+                              child: TextField(
                                 style: h4.copyWith(
-                                  color: AppColors.textColor22,
+                                  color: AppColors.textColor6, // typed text color (keep readable)
                                   fontSize: 10.sp,
+                                ),
+                                decoration: InputDecoration(
+                                  isDense: true,
+                                  border: InputBorder.none,
+                                  hintText: 'Search company name',
+                                  hintStyle: h4.copyWith(
+                                    color: AppColors.textColor22,
+                                    fontSize: 10.sp,
+                                  ),
+                                  contentPadding: EdgeInsets.zero,
                                 ),
                               ),
                             ),
@@ -118,7 +127,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 12.w, vertical: 6.h),
+                              horizontal: 12.w, vertical: 10.h),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.r),
                             color: AppColors.tsWhite,
@@ -214,10 +223,26 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                                   spacing: 4.w,
                                   children: [
                                     // circular radio-like icon
-                                    Icon(
-                                      isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-                                      color: AppColors.containerColor8,
-                                      size: 16.r,
+                                    Container(
+                                      padding: EdgeInsets.all(2.r),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: AppColors.textColor1,
+                                          width: 1.5.r,
+                                        ),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.all(2.835.r),
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: isSelected ? AppColors.textColor1 : AppColors.tsTransparent,
+                                            border: Border.all(
+                                              color: AppColors.textColor1,
+                                              width: 1.r,
+                                            )
+                                        ),
+                                      ),
                                     ),
 
                                     Expanded(
@@ -273,10 +298,26 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                           child: Row(
                             spacing: 4.w,
                             children: [
-                              Icon(
-                                isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-                                color: AppColors.containerColor8,
-                                size: 16.r,
+                              Container(
+                                padding: EdgeInsets.all(2.r),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: AppColors.textColor1,
+                                    width: 1.5.r,
+                                  ),
+                                ),
+                                child: Container(
+                                  padding: EdgeInsets.all(2.835.r),
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: isSelected ? AppColors.textColor1 : AppColors.tsTransparent,
+                                      border: Border.all(
+                                        color: AppColors.textColor1,
+                                        width: 1.r,
+                                      )
+                                  ),
+                                ),
                               ),
 
                               Expanded(
@@ -326,7 +367,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                   },
                 ),
 
-                SizedBox(height: 24.h),
+                SizedBox(height: 40.h),
 
                 // Next Button aligned to right
                 Row(

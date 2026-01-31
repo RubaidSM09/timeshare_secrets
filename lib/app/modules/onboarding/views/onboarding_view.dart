@@ -28,10 +28,31 @@ class OnboardingView extends GetView<OnboardingController> {
               ),
             ),
 
+            Center(
+              child: PageView(
+                controller: controller.pageController,
+                onPageChanged: controller.onPageChanged,
+                children: const [
+                  Onboarding1View(),
+                  Onboarding2View(),
+                  Onboarding3View(),
+                ],
+              ),
+            ),
+
             Obx(()
-              => controller.current.value != 2 ? Positioned(
-                top: 97.h,
-                right: 20.65.w,
+            => controller.current.value != 2 ? Positioned(
+              top: 97.h,
+              right: 20.65.w,
+              child: GestureDetector(
+                onTap: () {
+                  print('Rubaid');
+                  controller.pageController.animateToPage(
+                    2,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeOut,
+                  );
+                },
                 child: Container(
                   padding: EdgeInsets.only(left: 14.w, right: 10.w, top: 6.h, bottom: 6.h),
                   decoration: BoxDecoration(
@@ -60,19 +81,8 @@ class OnboardingView extends GetView<OnboardingController> {
                     ],
                   ),
                 ),
-              ) : SizedBox.shrink(),
-            ),
-
-            Center(
-              child: PageView(
-                controller: controller.pageController,
-                onPageChanged: controller.onPageChanged,
-                children: const [
-                  Onboarding1View(),
-                  Onboarding2View(),
-                  Onboarding3View(),
-                ],
               ),
+            ) : SizedBox.shrink(),
             ),
 
             Positioned(

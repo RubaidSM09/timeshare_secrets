@@ -34,7 +34,7 @@ class CustomNavigationBar extends StatelessWidget {
 
     return Container(
       height: 80.h,
-      padding: EdgeInsets.only(left: 52.w, right: 52.w, top: 7.h, bottom: 18.h),
+      padding: EdgeInsets.only(left: 52.w, right: 52.w, top: 7.h, bottom: 17.h),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(12.r),
@@ -50,7 +50,7 @@ class CustomNavigationBar extends StatelessWidget {
           ]
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(navItems.length, (index) {
           final item = navItems[index];

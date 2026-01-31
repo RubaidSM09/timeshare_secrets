@@ -43,10 +43,26 @@ class VacationWithStepView extends GetView<SetProfileDocsController> {
             ),
             child: Row(
               children: [
-                Icon(
-                  isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-                  color: AppColors.textColor1,
-                  size: 16.r,
+                Container(
+                  padding: EdgeInsets.all(2.r),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: AppColors.textColor1,
+                      width: 1.5.r,
+                    ),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.all(2.835.r),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: isSelected ? AppColors.textColor1 : AppColors.tsTransparent,
+                        border: Border.all(
+                          color: AppColors.textColor1,
+                          width: 1.r,
+                        )
+                    ),
+                  ),
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
@@ -124,7 +140,7 @@ class VacationWithStepView extends GetView<SetProfileDocsController> {
                     },
                   ),
 
-                  SizedBox(height: 32.h),
+                  SizedBox(height: 40.h),
 
                   // Back / Next row
                   Row(

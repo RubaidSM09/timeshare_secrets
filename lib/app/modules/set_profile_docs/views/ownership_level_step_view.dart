@@ -22,13 +22,19 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
       'Not Sure',
     ].obs;
 
-    final RxString selectedLevel = ''.obs;
+    final RxList<String> selectedLevel = <String>[].obs;
 
     Widget buildLevelTile(String label) {
       return Obx(() {
-        final bool isSelected = selectedLevel.value == label;
+        final bool isSelected = selectedLevel.contains(label);
         return GestureDetector(
-          onTap: () => selectedLevel.value = label,
+          onTap: () {
+            if (isSelected) {
+              selectedLevel.remove(label);
+            } else {
+              selectedLevel.add(label);
+            }
+          },
           child: Container(
             width: double.infinity,
             padding: EdgeInsets.symmetric(
@@ -46,10 +52,26 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
             ),
             child: Row(
               children: [
-                Icon(
-                  isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-                  color: AppColors.textColor1,
-                  size: 16.r,
+                Container(
+                  padding: EdgeInsets.all(2.r),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: AppColors.textColor1,
+                      width: 1.5.r,
+                    ),
+                  ),
+                  child: Container(
+                    padding: EdgeInsets.all(2.835.r),
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: isSelected ? AppColors.textColor1 : AppColors.tsTransparent,
+                        border: Border.all(
+                          color: AppColors.textColor1,
+                          width: 1.r,
+                        )
+                    ),
+                  ),
                 ),
                 SizedBox(width: 8.w),
                 Expanded(
@@ -139,7 +161,7 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                     },
                   ),
 
-                  SizedBox(height: 32.h),
+                  SizedBox(height: 40.h),
 
                   // Back / Next row
                   Row(

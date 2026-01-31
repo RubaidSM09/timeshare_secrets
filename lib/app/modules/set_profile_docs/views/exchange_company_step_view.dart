@@ -19,7 +19,7 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
       'Not Sure',
     ].obs;
 
-    final RxString selectedCompany = ''.obs;
+    final RxList<String> selectedCompany = <String>[].obs;
 
     final RxBool companyListOpen = false.obs;
 
@@ -153,9 +153,15 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                     return Column(
                       spacing: 12.h,
                       children: companies.map((c) {
-                        final bool isSelected = selectedCompany.value == c;
+                        final bool isSelected = selectedCompany.contains(c);
                         return GestureDetector(
-                          onTap: () => selectedCompany.value = c,
+                          onTap: () {
+                            if (isSelected) {
+                              selectedCompany.remove(c);
+                            } else {
+                              selectedCompany.add(c);
+                            }
+                          },
                           child: Container(
                             width: double.infinity,
                             padding: EdgeInsets.symmetric(
@@ -173,10 +179,26 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                             ),
                             child: Row(
                               children: [
-                                Icon(
-                                  isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-                                  color: AppColors.containerColor8,
-                                  size: 16.r,
+                                Container(
+                                  padding: EdgeInsets.all(2.r),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: AppColors.textColor1,
+                                      width: 1.5.r,
+                                    ),
+                                  ),
+                                  child: Container(
+                                    padding: EdgeInsets.all(2.835.r),
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: isSelected ? AppColors.textColor1 : AppColors.tsTransparent,
+                                        border: Border.all(
+                                          color: AppColors.textColor1,
+                                          width: 1.r,
+                                        )
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(width: 8.w),
                                 Expanded(
