@@ -59,6 +59,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                       style: h4.copyWith(
                         color: AppColors.textColor21,
                         fontSize: 12.sp,
+                        height: 2.h,
                       ),
                     ),
                   ],
@@ -109,6 +110,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                                   hintStyle: h4.copyWith(
                                     color: AppColors.textColor22,
                                     fontSize: 10.sp,
+                                    height: 2.4.h,
                                   ),
                                   contentPadding: EdgeInsets.zero,
                                 ),
@@ -156,6 +158,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                                   style: h4.copyWith(
                                     color: AppColors.textColor22,
                                     fontSize: 10.sp,
+                                    height: 2.4.h,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -251,6 +254,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                                         style: h4.copyWith(
                                           color: AppColors.textColor6,
                                           fontSize: 16.sp,
+                                          height: 1.5.h,
                                         ),
                                       ),
                                     ),
@@ -326,6 +330,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                                   style: h4.copyWith(
                                     color: AppColors.textColor6,
                                     fontSize: 16.sp,
+                                    height: 1.5.h,
                                   ),
                                 ),
                               ),
@@ -363,7 +368,7 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
                     ],
                   ),
                   onTap: () {
-                    Get.dialog(AddTimeshareCompany());
+                    Get.dialog(AddTimeshareCompany(title: 'Add Timeshare Company',));
                   },
                 ),
 
@@ -401,7 +406,12 @@ class DeveloperCompaniesStepView extends GetView<SetProfileDocsController> {
 
 
 class AddTimeshareCompany extends StatelessWidget {
-  const AddTimeshareCompany({super.key});
+  final String title;
+
+  const AddTimeshareCompany({
+    required this.title,
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -415,7 +425,7 @@ class AddTimeshareCompany extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Add Timeshare Company',
+              title,
               style: h1.copyWith(
                 color: AppColors.textColor12,
                 fontSize: 24.sp,

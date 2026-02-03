@@ -7,6 +7,8 @@ import 'package:timeshare_secrets/common/app_colors.dart';
 import 'package:timeshare_secrets/common/custom_fonts.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
 
+import 'developer_companies_step_view.dart';
+
 class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
   const ExchangeCompanyStepView({super.key});
 
@@ -75,11 +77,21 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                               ),
 
                               Expanded(
-                                child: Text(
-                                  'Search company name',
+                                child: TextField(
                                   style: h4.copyWith(
-                                    color: AppColors.textColor22,
+                                    color: AppColors.textColor6, // typed text color (keep readable)
                                     fontSize: 10.sp,
+                                  ),
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    border: InputBorder.none,
+                                    hintText: 'Search company name',
+                                    hintStyle: h4.copyWith(
+                                      color: AppColors.textColor22,
+                                      fontSize: 10.sp,
+                                      height: 2.4.h,
+                                    ),
+                                    contentPadding: EdgeInsets.zero,
                                   ),
                                 ),
                               ),
@@ -125,6 +137,7 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                                     style: h4.copyWith(
                                       color: AppColors.textColor22,
                                       fontSize: 10.sp,
+                                      height: 2.4.h,
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -148,12 +161,108 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
 
                   SizedBox(height: 20.h),
 
-                  // Companies list
+                  // Dropdown container (custom) - same as DeveloperCompaniesStepView
                   Obx(() {
+                    if (!companyListOpen.value) return const SizedBox.shrink();
+
+                    return Container(
+                      padding: EdgeInsets.symmetric(horizontal: 17.w, vertical: 21.h),
+                      decoration: BoxDecoration(
+                        color: AppColors.tsWhite,
+                        borderRadius: BorderRadius.circular(12.r),
+                        border: Border.all(color: AppColors.textColor1),
+                      ),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxHeight: 778.h,
+                        ),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            spacing: 12.h,
+                            children: companies.map((c) {
+                              final bool isSelected = selectedCompany.contains(c);
+
+                              return GestureDetector(
+                                onTap: () {
+                                  if (isSelected) {
+                                    selectedCompany.remove(c);
+                                  } else {
+                                    selectedCompany.add(c);
+                                  }
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    color: isSelected
+                                        ? AppColors.containerColor1
+                                        : AppColors.tsWhite,
+                                    border: Border.all(color: AppColors.containerColor8),
+                                  ),
+                                  child: Row(
+                                    spacing: 4.w,
+                                    children: [
+                                      // circular radio-like icon
+                                      Container(
+                                        padding: EdgeInsets.all(2.r),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                            color: AppColors.textColor1,
+                                            width: 1.5.r,
+                                          ),
+                                        ),
+                                        child: Container(
+                                          padding: EdgeInsets.all(2.835.r),
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: isSelected
+                                                ? AppColors.textColor1
+                                                : AppColors.tsTransparent,
+                                            border: Border.all(
+                                              color: AppColors.textColor1,
+                                              width: 1.r,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      Expanded(
+                                        child: Text(
+                                          c,
+                                          style: h4.copyWith(
+                                            color: AppColors.textColor6,
+                                            fontSize: 16.sp,
+                                            height: 1.5.h,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+
+                  SizedBox(height: 18.h),
+
+                  // If dropdown is closed show the compact list items (regular layout)
+                  Obx(() {
+                    if (companyListOpen.value) {
+                      return const SizedBox.shrink();
+                    }
+
+                    final compactList = companies.take(4).toList(); // Exchange list is smaller
                     return Column(
                       spacing: 12.h,
-                      children: companies.map((c) {
+                      children: compactList.map((c) {
                         final bool isSelected = selectedCompany.contains(c);
+
                         return GestureDetector(
                           onTap: () {
                             if (isSelected) {
@@ -164,20 +273,19 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                           },
                           child: Container(
                             width: double.infinity,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 16.w,
-                              vertical: 14.h,
-                            ),
+                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8.r),
                               color: isSelected
                                   ? AppColors.containerColor1
-                                  : AppColors.tsWhite,
+                                  : AppColors.tsTransparent,
                               border: Border.all(
-                                color: AppColors.containerColor8,
+                                color: AppColors.textColor1,
+                                width: 0.85.r,
                               ),
                             ),
                             child: Row(
+                              spacing: 4.w,
                               children: [
                                 Container(
                                   padding: EdgeInsets.all(2.r),
@@ -191,22 +299,25 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                                   child: Container(
                                     padding: EdgeInsets.all(2.835.r),
                                     decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: isSelected ? AppColors.textColor1 : AppColors.tsTransparent,
-                                        border: Border.all(
-                                          color: AppColors.textColor1,
-                                          width: 1.r,
-                                        )
+                                      shape: BoxShape.circle,
+                                      color: isSelected
+                                          ? AppColors.textColor1
+                                          : AppColors.tsTransparent,
+                                      border: Border.all(
+                                        color: AppColors.textColor1,
+                                        width: 1.r,
+                                      ),
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 8.w),
+
                                 Expanded(
                                   child: Text(
                                     c,
                                     style: h4.copyWith(
-                                      color: AppColors.normalBlue,
-                                      fontSize: 15.sp,
+                                      color: AppColors.textColor6,
+                                      fontSize: 16.sp,
+                                      height: 1.5.h,
                                     ),
                                   ),
                                 ),
@@ -246,7 +357,7 @@ class ExchangeCompanyStepView extends GetView<SetProfileDocsController> {
                       ],
                     ),
                     onTap: () {
-                      // TODO: open dialog to add another exchange company
+                      Get.dialog(AddTimeshareCompany(title: 'Add Exchange Company',));
                     },
                   ),
 

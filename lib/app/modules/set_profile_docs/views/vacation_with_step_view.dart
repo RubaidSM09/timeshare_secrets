@@ -7,6 +7,8 @@ import 'package:timeshare_secrets/common/app_colors.dart';
 import 'package:timeshare_secrets/common/custom_fonts.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
 
+import 'developer_companies_step_view.dart';
+
 class VacationWithStepView extends GetView<SetProfileDocsController> {
   const VacationWithStepView({super.key});
 
@@ -71,6 +73,7 @@ class VacationWithStepView extends GetView<SetProfileDocsController> {
                     style: h4.copyWith(
                       color: AppColors.textColor6,
                       fontSize: 16.sp,
+                      height: 1.5.h,
                     ),
                   ),
                 ),
@@ -136,7 +139,7 @@ class VacationWithStepView extends GetView<SetProfileDocsController> {
                       ],
                     ),
                     onTap: () {
-                      // TODO: open dialog to add custom vacation-with option
+                      Get.dialog(AddTimeshareCompany(title: 'Add Option',));
                     },
                   ),
 

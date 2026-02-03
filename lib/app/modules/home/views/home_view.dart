@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'dart:math' as math;
 
 import 'package:get/get.dart';
+import 'package:timeshare_secrets/app/modules/profile/bindings/profile_binding.dart';
 import 'package:timeshare_secrets/app/modules/profile/views/subscription_plans_view.dart';
 import 'package:timeshare_secrets/app/modules/vault/views/vault_view.dart';
 import 'package:timeshare_secrets/common/app_colors.dart';
@@ -236,9 +237,7 @@ class HomeView extends GetView<HomeController> {
 
                 SizedBox(height: 40.h,),
 
-                GestureDetector(
-                  onTap: () => Get.to(SubscriptionPlansView()),
-                  child: Container(
+                Container(
                     padding: EdgeInsets.all(16.r),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.r),
@@ -330,13 +329,30 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                 ),
                               ],
-                            )
+                            ),
+
+                            CustomButton(
+                              onTap: () => Get.to(SubscriptionPlansView(), binding: ProfileBinding(),),
+                              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 8.h,),
+                              color: AppColors.normalBlue,
+                              buttonContent: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Try Now',
+                                    style: h3.copyWith(
+                                      fontSize: 12.sp,
+                                      color: AppColors.tsWhite,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         )
                       ],
                     ),
                   ),
-                ),
 
                 SizedBox(height: 40.h,),
 
@@ -484,6 +500,7 @@ class QueryTopicsCard extends StatelessWidget {
             style: h4.copyWith(
               color: AppColors.textColor6,
               fontSize: 12.sp,
+              height: 2.h,
             ),
           )
         ],
@@ -668,7 +685,7 @@ class SmartAlertsCard extends StatelessWidget {
                           style: h3.copyWith(
                             color: AppColors.tsWhite,
                             fontSize: 12.sp,
-                            height: 1.7.h,
+                            height: 1.42.h,
                           ),
                         ),
 

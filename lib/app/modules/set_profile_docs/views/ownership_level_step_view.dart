@@ -7,6 +7,8 @@ import 'package:timeshare_secrets/common/app_colors.dart';
 import 'package:timeshare_secrets/common/custom_fonts.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
 
+import 'developer_companies_step_view.dart';
+
 class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
   const OwnershipLevelStepView({super.key});
 
@@ -80,6 +82,7 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                     style: h4.copyWith(
                       color: AppColors.textColor6,
                       fontSize: 16.sp,
+                      height: 1.5.h,
                     ),
                   ),
                 ),
@@ -117,6 +120,7 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                       style: h4.copyWith(
                         color: AppColors.textColor21,
                         fontSize: 12.sp,
+                        height: 2.h,
                       ),
                     ),
                   ),
@@ -157,7 +161,7 @@ class OwnershipLevelStepView extends GetView<SetProfileDocsController> {
                       ],
                     ),
                     onTap: () {
-                      // TODO: open dialog to add new level name
+                      Get.dialog(AddTimeshareCompany(title: 'Add Level Name',));
                     },
                   ),
 

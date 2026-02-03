@@ -8,6 +8,8 @@ import 'package:timeshare_secrets/common/custom_fonts.dart';
 import 'package:timeshare_secrets/common/widgets/custom_button.dart';
 import 'package:timeshare_secrets/common/widgets/custom_text_fields.dart';
 
+import 'developer_companies_step_view.dart';
+
 class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
   const DeveloperOwnershipStepView({super.key});
 
@@ -202,7 +204,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                       ],
                     ),
                     onTap: () {
-                      // TODO: show dialog to add option
+                      Get.dialog(AddTimeshareCompany(title: 'Add Option',));
                     },
                   ),
 
@@ -400,7 +402,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                       ],
                     ),
                     onTap: () {
-                      // TODO: show dialog to add option
+                      Get.dialog(AddTimeshareCompany(title: 'Add Another Property',));
                     },
                   ),
 
@@ -773,7 +775,7 @@ class DeveloperOwnershipStepView extends GetView<SetProfileDocsController> {
                       ],
                     ),
                     onTap: () {
-                      // TODO: add custom season option
+                      Get.dialog(AddTimeshareCompany(title: 'Add Option',));
                     },
                   ),
 
